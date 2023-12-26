@@ -3,7 +3,7 @@ import Head from "next/head";
 import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import ArticleList from "@/components/ArticleList";
 import Header from "@/components/Header";
-import List from "@/components/List";
+import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 
 interface ArticleProps {
@@ -43,12 +43,8 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
         <div
           className="container"
         >
-          <List
-            linkPrefix="/song/"
-            items={songs.map(song => ({
-              id: song.song_id,
-              name: `${song.song_name} / ${song.artist_name}`
-            }))}
+          <SongList
+            songs={songs}
           />
         </div>
         <h2>関連記事</h2>

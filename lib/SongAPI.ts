@@ -23,6 +23,50 @@ const fetchSongs = async (): Promise<fetchSongsRes[]> => {
   }));
 }
 
+interface fetchPopularSongsByYearRes {
+  song_id: number;
+  song_name: string;
+  artist_name: string;
+  articles_cnt: number;
+}
+const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsByYearRes[]> => {
+  const { rows } = await sql`
+    SELECT
+      song.id AS song_id,
+      song.name AS song_name,
+      artist.name AS artist_name,
+      sub.articles_cnt AS articles_cnt
+    FROM (
+      SELECT
+        song_id,
+        COUNT(*) AS articles_cnt,
+        DENSE_RANK() OVER (ORDER BY COUNT(*) desc) AS rank
+      FROM
+        article_song_map
+        INNER JOIN article
+          ON article_song_map.article_id = article.id
+      WHERE
+        year = ${year}
+      GROUP BY
+        song_id
+    ) sub
+      INNER JOIN song
+        ON sub.song_id = song.id
+      INNER JOIN artist
+        ON song.artist_id = artist.id
+    ORDER BY
+      articles_cnt DESC,
+      song_name,
+      artist_name
+  `;
+  return rows.map(row => ({
+    song_id: row.song_id,
+    song_name: row.song_name,
+    artist_name: row.artist_name,
+    articles_cnt: row.articles_cnt
+  }))
+}
+
 interface fetchSongRes {
   song_name: string;
   artist_name: string;
@@ -70,7 +114,7 @@ const fetchArtists = async (): Promise<fetchArtistsRes[]> => {
 
 const SongAPI = {
   fetchSongs,
-  fetchSong,
+  fetchPopularSongsByYear,
   fetchArtists
 }
 
