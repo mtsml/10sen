@@ -24,9 +24,11 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <Head>
         <title>{year}年 - 楽曲10選</title>
       </Head>
-      <Header />
+      <Header
+        breadcrumbs={[ { href: `/year/${year}`, label: `${year}年` } ]}
+      />
       <main>
-        <h2>{year}年</h2>
+        <h2>紹介記事</h2>
         <div
           className="container"
         >

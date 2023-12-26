@@ -9,6 +9,7 @@ import ArticleAPI from "@/lib/ArticleAPI";
 interface ArticleProps {
   url: string;
   name: string;
+  year: number;
   songs: Array<{
     song_id: number,
     song_name: string,
@@ -24,13 +25,15 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ url, name, year, songs, relatedArticles }: ArticleProps) => {
   return (
     <>
       <Head>
         <title>{name} - 楽曲10選</title>
       </Head>
-      <Header/>
+      <Header
+        breadcrumbs={[ { href: `/year/${year}`, label: `${year}年` } ]}
+      />
       <main>
         <h2 className="flex-space-between">
           <span>
@@ -78,12 +81,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params && context.params.id;
 
-  const { name, url, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
+  const { name, url, year, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
 
   return {
     props: {
       name,
       url,
+      year,
       songs,
       relatedArticles
     }

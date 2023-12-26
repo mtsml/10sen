@@ -32,6 +32,12 @@ header a {
   color: rgb(92, 163, 209);
 }
 
+header .separator {
+  font-size: 150%;
+  padding: 0 0.5em;
+  color: #ddd;
+}
+
 li {
   list-style: none;
 }
