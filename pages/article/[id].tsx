@@ -3,12 +3,13 @@ import Head from "next/head";
 import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import ArticleList from "@/components/ArticleList";
 import Header from "@/components/Header";
-import List from "@/components/List";
+import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 
 interface ArticleProps {
   url: string;
   name: string;
+  year: number;
   songs: Array<{
     song_id: number,
     song_name: string,
@@ -24,13 +25,15 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ url, name, year, songs, relatedArticles }: ArticleProps) => {
   return (
     <>
       <Head>
         <title>{name} - 楽曲10選</title>
       </Head>
-      <Header/>
+      <Header
+        breadcrumbs={[ { href: `/year/${year}`, label: `${year}年` } ]}
+      />
       <main>
         <h2 className="flex-space-between">
           <span>
@@ -43,12 +46,8 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
         <div
           className="container"
         >
-          <List
-            linkPrefix="/song/"
-            items={songs.map(song => ({
-              id: song.song_id,
-              name: `${song.song_name} / ${song.artist_name}`
-            }))}
+          <SongList
+            songs={songs}
           />
         </div>
         <h2>関連記事</h2>
@@ -82,12 +81,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params && context.params.id;
 
-  const { name, url, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
+  const { name, url, year, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
 
   return {
     props: {
       name,
       url,
+      year,
       songs,
       relatedArticles
     }

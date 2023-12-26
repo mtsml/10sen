@@ -32,6 +32,12 @@ header a {
   color: rgb(92, 163, 209);
 }
 
+header .separator {
+  font-size: 150%;
+  padding: 0 0.5em;
+  color: #ddd;
+}
+
 li {
   list-style: none;
 }
@@ -47,7 +53,7 @@ h2 {
 }
 
 .external-link-icon {
-  padding: 0 0.5em;
+  padding: 0 0 0 0.5em;
   color: #767676;
   align-self: center;
 }
@@ -57,7 +63,7 @@ h2 {
 }
 
 .pure-menu-item {
-  margin-bottom: 1em;
+  margin-bottom: 0.8em;
 }
 
 .pure-menu-link {
@@ -90,4 +96,10 @@ h2 {
 
 .video {
   max-width: 100%;
+}
+
+.article-cnt {
+  padding: 0 0 0 0.5em;
+  align-self: center;
+  white-space: nowrap;
 }
