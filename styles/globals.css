@@ -67,6 +67,20 @@ h2 {
   white-space: normal;
 }
 
+@media (hover: none) {
+  .pure-menu-link:hover {
+    background-color: inherit;
+  }
+
+  .pure-menu-link:active {
+    background-color: #eee;
+  }
+}
+
+.pure-menu-link:focus {
+  background-color: inherit;
+}
+
 .year-container {
   font-size: 200%;
   font-weight: bold;
