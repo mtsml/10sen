@@ -130,6 +130,8 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
         ON song.artist_id = artist.id
     WHERE
       article_id = ${id}
+    ORDER BY
+      article_song_map.sort_no
   `;
   
   const relatedArticlesQuery = sql`
