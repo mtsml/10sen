@@ -63,7 +63,7 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const articles = await ArticleAPI.fetchArticles(undefined, undefined, undefined);
+  const articles = await ArticleAPI.fetchArticles();
 
   const paths = articles.map(article => {
     return {

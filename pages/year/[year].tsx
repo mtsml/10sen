@@ -51,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const year = context.params && context.params.year;
 
-  const articles = await ArticleAPI.fetchArticles(Number(year), undefined, undefined);
+  const articles = await ArticleAPI.fetchArticlesByYear(Number(year));
 
   return {
     props: {

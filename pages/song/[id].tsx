@@ -1,10 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import Header from "@/components/Header";
-import List from "@/components/List";
+import ArticleList from "@/components/ArticleList";
 import SongAPI from "@/lib/SongAPI";
-import Article from "@/types/article";
 import ArticleAPI from "@/lib/ArticleAPI";
+import Article from "@/types/article";
 
 interface SongProps {
   song_name: string;
@@ -41,9 +41,8 @@ const Song = ({ song_name, artist_name, video_id, articles }: SongProps) => {
         <div
           className="container"
         >
-          <List
-            linkPrefix="/article/"
-            items={articles} 
+          <ArticleList
+            articles={articles} 
           />
         </div>
       </main>
@@ -73,7 +72,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const result = await Promise.all([
     SongAPI.fetchSong(Number(id)),
-    ArticleAPI.fetchArticles(undefined, Number(id), undefined)
+    ArticleAPI.fetchArticlesBySong(Number(id))
   ]);
   const [{ song_name, artist_name, video_id }, articles] = result;
 
