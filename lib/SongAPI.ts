@@ -113,6 +113,7 @@ const fetchArtists = async (): Promise<fetchArtistsRes[]> => {
 }
 
 const SongAPI = {
+  fetchSong,
   fetchSongs,
   fetchPopularSongsByYear,
   fetchArtists
