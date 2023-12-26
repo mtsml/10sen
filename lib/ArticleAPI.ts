@@ -100,7 +100,7 @@ interface fetchArticleRes {
   }>;
 }
 const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
-  const articleResult = await sql`
+  const articleQuery = sql`
     SELECT
       name,
       url
@@ -111,7 +111,7 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
     ;
   `;
 
-  const songResult = await sql`
+  const songQuery = sql`
     SELECT
       song.id AS song_id,
       song.name AS song_name,
@@ -127,7 +127,7 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
       article_id = ${id}
   `;
   
-  const relatedArticlesResult = await sql`
+  const relatedArticlesQuery = sql`
     SELECT
       other.article_id AS id,
       (SELECT url FROM article WHERE id = other.article_id) AS url,
@@ -149,6 +149,11 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
     ORDER BY
       songs_cnt DESC
   `;
+
+  const result = await Promise.all([
+    articleQuery, songQuery, relatedArticlesQuery
+  ]);
+  const [articleResult, songResult, relatedArticlesResult] = result;
 
   return {
     name: articleResult.rows[0].name,

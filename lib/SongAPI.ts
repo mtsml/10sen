@@ -1,4 +1,4 @@
-import { sql, db } from "@vercel/postgres";
+import { sql } from "@vercel/postgres";
 
 interface fetchSongsRes {
   id: number;

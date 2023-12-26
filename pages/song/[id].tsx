@@ -71,8 +71,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params && context.params.id;
 
-  const { song_name, artist_name, video_id } = await SongAPI.fetchSong(Number(id));
-  const articles = await ArticleAPI.fetchArticles(undefined, Number(id), undefined);
+  const result = await Promise.all([
+    SongAPI.fetchSong(Number(id)),
+    ArticleAPI.fetchArticles(undefined, Number(id), undefined)
+  ]);
+  const [{ song_name, artist_name, video_id }, articles] = result;
 
   return {
     props: {
