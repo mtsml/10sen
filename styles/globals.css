@@ -48,18 +48,12 @@ h2 {
 }
 
 p {
-  margin-bottom: 1em;
+  line-height: 1.5em;
 }
 
 .flex-space-between {
   display: flex;
   justify-content: space-between;
-}
-
-.external-link-icon {
-  padding: 0 0 0 0.5em;
-  color: #767676;
-  align-self: center;
 }
 
 .container {
@@ -91,6 +85,30 @@ p {
   background-color: inherit;
 }
 
+.external-link-icon {
+  padding: 0 0 0 0.5em;
+  color: #767676;
+  align-self: center;
+}
+
+.external-link-icon.-inline {
+  padding: 0 0.2em;
+}
+
+.article-h2 > span {
+  padding-right: 0.3em;
+}
+
+.article-h2 > .pure-menu-link {
+  display: inline-block;
+  font-weight: normal;
+  font-size: 0.7em;
+}
+
+.article-h2 > .pure-menu-link > .external-link-icon {
+  padding-left: 0.3em;
+}
+
 .year-container {
   font-size: 200%;
   font-weight: bold;
@@ -106,4 +124,25 @@ p {
   padding: 0 0 0 0.5em;
   align-self: center;
   white-space: nowrap;
+}
+
+.accordion {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.accordion-header {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.accordion-body {
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.accordion-body > * {
+  margin-top: 1em;
 }

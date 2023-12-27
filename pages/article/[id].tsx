@@ -5,6 +5,7 @@ import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME } from "@/util/const";
+import Link from "next/link";
 
 interface ArticleProps {
   url: string;
@@ -30,12 +31,13 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
       <Head>
         <title>{name} - {SERVICE_NAME}</title>
       </Head>
-      <h2 className="flex-space-between">
+      <h2 className="article-h2">
         <span>{name}</span>
-        <ExternalLinkIcon href={url} />
+        <Link className="pure-menu-link" href={url}>
+          記事を見る<ExternalLinkIcon href={url} />
+        </Link>
       </h2>
       <div className="container">
-        <p>TODO: ネタバレ防止措置を考える</p>
         <SongList songs={songs} />
       </div>
       <h2>レコメンド（TODO: 文言考える）</h2>

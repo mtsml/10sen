@@ -1,6 +1,9 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import ArticleList from "@/components/ArticleList";
+import Accordion from "@/components/Accordion";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
@@ -26,6 +29,9 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       </Head>
       <h2>{year}年の記事一覧</h2>
       <div className="container">
+        <Accordion title="リンクをクリックする前に">
+          <p>記事名をクリックすると選曲・関連記事が表示されます。ネタバレを踏みたくない場合は外部リンクアイコン<FontAwesomeIcon className="external-link-icon -inline" icon={faUpRightFromSquare} />をクリックして直接記事へアクセスしてください。</p>
+        </Accordion>
         <ArticleList articles={articles} />
       </div>
       <h2>{year}年の人気曲</h2>
