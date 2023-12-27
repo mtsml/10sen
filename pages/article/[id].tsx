@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Accordion from "@/components/Accordion";
 import ArticleList from "@/components/ArticleList";
 import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import SongList from "@/components/SongList";
@@ -38,7 +39,9 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
         </Link>
       </h2>
       <div className="container">
-        <SongList songs={songs} />
+        <Accordion title="選曲を見る">
+          <SongList songs={songs} />
+        </Accordion>
       </div>
       <h2>レコメンド（TODO: 文言考える）</h2>
       <div className="container">
