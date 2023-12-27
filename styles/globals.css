@@ -47,6 +47,10 @@ h2 {
   padding: 0.4em 0.2em;
 }
 
+p {
+  margin-bottom: 1em;
+}
+
 .flex-space-between {
   display: flex;
   justify-content: space-between;

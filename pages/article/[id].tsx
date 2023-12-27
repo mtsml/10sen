@@ -35,9 +35,10 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
         <ExternalLinkIcon href={url} />
       </h2>
       <div className="container">
+        <p>TODO: ネタバレ防止措置を考える</p>
         <SongList songs={songs} />
       </div>
-      <h2>関連記事</h2>
+      <h2>レコメンド（TODO: 文言考える）</h2>
       <div className="container">
         <ArticleList articles={relatedArticles} />
       </div>
