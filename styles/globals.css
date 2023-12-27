@@ -10,7 +10,7 @@ body {
   font-family: YakuHanJP, "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   width: 100%;
   white-space: normal;
-  color: rgb(61, 79, 93);
+  color: #333333;
 }
 
 main {
@@ -38,7 +38,7 @@ li {
 
 h2 {
   border-bottom: 1px solid #eee;
-  padding: 0.4em 0.2em;
+  padding: 0.4em 0em;
 }
 
 h3 {
