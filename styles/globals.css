@@ -22,7 +22,8 @@ main {
 header {
   background-color: rgb(61, 79, 93);
   font-weight: bold;
-  display: block;
+  display: flex;
+  justify-content: center;
   padding: 1em 1.2em;
 }
 
