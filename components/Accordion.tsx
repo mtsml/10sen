@@ -5,9 +5,6 @@ import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 const getItem = (key: string) => {
   let value = false;
   try {
-    console.log(key)
-    console.log(sessionStorage.getItem(key))
-    console.log(sessionStorage.getItem(key) === "true")
     value = sessionStorage.getItem(key) === "true";
   } catch {
     console.log("SessionStrageが利用できません。");
@@ -35,7 +32,12 @@ const Accordion = ({ id, title, children }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(getItem(`accordionIsOpen-${id}`));
 
   useEffect(() => {
-    setIsOpen(getItem(`accordionIsOpen-${id}`))
+    // ページ遷移時はTransitionを無効にする
+    return () => removeTransition();
+  }, []);
+
+  useEffect(() => {
+    setIsOpen(getItem(`accordionIsOpen-${id}`));
   }, [id]);
 
   useEffect(() => {
@@ -53,7 +55,7 @@ const Accordion = ({ id, title, children }: AccordionProps) => {
 
   const removeTransition = () => {
     if (ref.current) {
-      ref.current.classList.add("transition");
+      ref.current.classList.remove("transition");
     }
   }
 
@@ -62,9 +64,9 @@ const Accordion = ({ id, title, children }: AccordionProps) => {
       <div
         className="accordion-header flex-space-between"
         onClick={() => {
+          // ユーザー操作時はTransitionを有効にする
           addTransition();
           setIsOpen(!isOpen);
-          removeTransition();
         }}
       >
         <span>{title}</span>
