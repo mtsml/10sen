@@ -34,18 +34,23 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
       </Head>
       <h2 className="article-h2">
         <span>{name}</span>
-        <Link className="pure-menu-link" href={url}>
-          記事を見る<ExternalLinkIcon href={url} />
-        </Link>
       </h2>
       <div className="container">
+        <p>
+          <Link className="pure-menu-link" href={url}>
+            記事を見る<ExternalLinkIcon href={url} />
+          </Link>
+        </p>
         <Accordion title="選曲を見る">
           <SongList songs={songs} />
         </Accordion>
       </div>
-      <h2>レコメンド（TODO: 文言考える）</h2>
+      <h3>同じ曲を紹介している記事</h3>
       <div className="container">
-        <ArticleList articles={relatedArticles} />
+        {relatedArticles.length === 0
+          ? <p>同じ曲を紹介している記事はありません。</p>
+          : <ArticleList articles={relatedArticles} />
+        }
       </div>
     </>
   );
