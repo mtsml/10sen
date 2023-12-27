@@ -1,12 +1,12 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Accordion from "@/components/Accordion";
 import ArticleList from "@/components/ArticleList";
-import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME } from "@/util/const";
-import Link from "next/link";
 
 interface ArticleProps {
   url: string;
@@ -37,9 +37,17 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
       </h2>
       <div className="container">
         <p>
-          <Link className="pure-menu-link" href={url}>
-            記事を見る<ExternalLinkIcon href={url} />
-          </Link>
+          <a
+            className="pure-menu-link"
+            href={url}
+            target="_blank"
+          >
+            <span>記事を見る</span>
+            <FontAwesomeIcon
+              className="external-link-icon"
+              icon={faUpRightFromSquare}
+            />
+          </a>
         </p>
         <Accordion title="選曲を見る">
           <SongList songs={songs} />
