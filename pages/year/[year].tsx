@@ -24,21 +24,13 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <Head>
         <title>{year}年 - {SERVICE_NAME}</title>
       </Head>
-      <h2>紹介記事</h2>
-      <div
-        className="container"
-      >
-        <ArticleList
-          articles={articles}
-        />
+      <h2>{year}年の記事一覧</h2>
+      <div className="container">
+        <ArticleList articles={articles} />
       </div>
-      <h2>たくさん言及されている曲</h2>
-      <div
-        className="container"
-      >
-        <SongList
-          songs={popularSongs}
-        />
+      <h2>{year}年の人気曲</h2>
+      <div className="container">
+        <SongList songs={popularSongs} />
       </div>
     </>
   );
