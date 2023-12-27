@@ -9,6 +9,7 @@ import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME } from "@/util/const";
 
 interface ArticleProps {
+  id: number;
   url: string;
   name: string;
   songs: Array<{
@@ -26,7 +27,7 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
   return (
     <>
       <Head>
@@ -49,7 +50,7 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
             />
           </a>
         </p>
-        <Accordion title="選曲を見る">
+        <Accordion id={id} title="選曲を見る">
           <SongList songs={songs} />
         </Accordion>
       </div>
@@ -88,6 +89,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      id,
       name,
       url,
       songs,

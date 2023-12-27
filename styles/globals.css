@@ -139,9 +139,12 @@ p {
 
 .accordion-body {
   overflow: hidden;
-  transition: 0.3s;
 }
 
 .accordion-body > * {
   margin-top: 1em;
+}
+
+.accordion-body.transition {
+  transition: 0.3s;
 }
