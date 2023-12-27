@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
-import Header from "@/components/Header";
 import ArticleAPI from "@/lib/ArticleAPI";
+import { SERVICE_NAME } from "@/util/const";
 
 interface HomeProps {
   years: number[];
@@ -12,30 +12,27 @@ const Home = ({ years }: HomeProps) => {
   return (
     <>
       <Head>
-        <title>楽曲10選</title>
+        <title>{SERVICE_NAME}</title>
       </Head>
-      <Header />
-      <main>
-        <div className="year-container">
-          <ul className="pure-menu">
-            {years.map(year => (
-              <li
-                key={year}
-                className="pure-menu-item"
+      <div className="year-container">
+        <ul className="pure-menu">
+          {years.map(year => (
+            <li
+              key={year}
+              className="pure-menu-item"
+            >
+              <Link
+                className="pure-menu-link"
+                href={`/year/${encodeURIComponent(year)}`}
               >
-                <Link
-                  className="pure-menu-link"
-                  href={`/year/${encodeURIComponent(year)}`}
-                >
-                  {year}年
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </main>
+                {year}年
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
-  )
+  );
 }
 
 export const getStaticProps: GetStaticProps = async () => {

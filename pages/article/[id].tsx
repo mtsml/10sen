@@ -1,15 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import ArticleList from "@/components/ArticleList";
-import Header from "@/components/Header";
+import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
+import { SERVICE_NAME } from "@/util/const";
 
 interface ArticleProps {
   url: string;
   name: string;
-  year: number;
   songs: Array<{
     song_id: number,
     song_name: string,
@@ -25,38 +24,23 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ url, name, year, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
   return (
     <>
       <Head>
-        <title>{name} - 楽曲10選</title>
+        <title>{name} - {SERVICE_NAME}</title>
       </Head>
-      <Header
-        breadcrumbs={[ { href: `/year/${year}`, label: `${year}年` } ]}
-      />
-      <main>
-        <h2 className="flex-space-between">
-          <span>
-            {name}
-          </span>
-          <ExternalLinkIcon
-            href={url}
-          />
-        </h2>
-        <div
-          className="container"
-        >
-          <SongList
-            songs={songs}
-          />
-        </div>
-        <h2>関連記事</h2>
-        <div className="container">
-          <ArticleList
-            articles={relatedArticles}
-          />
-        </div>
-      </main>
+      <h2 className="flex-space-between">
+        <span>{name}</span>
+        <ExternalLinkIcon href={url} />
+      </h2>
+      <div className="container">
+        <SongList songs={songs} />
+      </div>
+      <h2>関連記事</h2>
+      <div className="container">
+        <ArticleList articles={relatedArticles} />
+      </div>
     </>
   );
 }
@@ -81,13 +65,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params && context.params.id;
 
-  const { name, url, year, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
+  const { name, url, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
 
   return {
     props: {
       name,
       url,
-      year,
       songs,
       relatedArticles
     }
