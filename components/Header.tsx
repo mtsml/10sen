@@ -1,21 +1,10 @@
 import Link from "next/link";
+import { SERVICE_NAME } from "@/util/const";
 
-interface HeaderProps {
-  breadcrumbs?: Array<{
-    href: string;
-    label: string;
-  }>
-}
-const Header = ({ breadcrumbs }: HeaderProps) => {
+const Header = () => {
   return (
     <header>
-      <Link href="/">楽曲10選</Link>
-      {breadcrumbs && breadcrumbs.map(breadcrumb => (
-        <small>
-          <span className="separator">/</span>
-          <Link href={breadcrumb.href}>{breadcrumb.label}</Link>
-        </small>
-      ))}
+      <Link href="/">{SERVICE_NAME}</Link>
     </header>
   );
 }
