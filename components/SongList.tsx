@@ -24,9 +24,9 @@ const SongList = ({ songs }: SongListProps) => {
             {song.song_name} / {song.artist_name}
           </Link>
           {song.articles_cnt &&
-            <div className={`article-cnt rank${song.rank}`}>
+            <div className={`article-cnt -rank${song.rank}`}>
               <span>{song.articles_cnt}</span>
-              <small>Posts</small>
+              <span className="suffix">Posts</span>
             </div>
           }
         </li>

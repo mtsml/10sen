@@ -1,5 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import Imformation from "@/components/Information";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
@@ -30,6 +33,15 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       </Head>
       <h2>{year}年の記事</h2>
       <div className="container">
+        <Imformation>
+          <FontAwesomeIcon
+            className="external-link-icon -inline"
+            icon={faUpRightFromSquare}
+          />
+          <span>
+            をクリックすると記事（外部サイト）を開きます。
+          </span>
+        </Imformation>
         <ArticleList articles={articles} />
       </div>
       <h2>{year}年の人気曲</h2>
