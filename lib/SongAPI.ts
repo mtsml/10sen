@@ -30,7 +30,7 @@ interface fetchPopularSongsByYearRes {
   articles_cnt: number;
   rank: number;
 }
-const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsByYearRes[]> => {
+const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise<fetchPopularSongsByYearRes[]> => {
   const { rows } = await sql`
     SELECT
       song.id AS song_id,
@@ -57,7 +57,7 @@ const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsB
       INNER JOIN artist
         ON song.artist_id = artist.id
     WHERE
-      rank <= 3
+      rank <= ${limit}
     ORDER BY
       articles_cnt DESC,
       artist_name,

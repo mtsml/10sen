@@ -114,19 +114,21 @@ p {
   padding: 0 0 0 0.5em;
   align-self: center;
   white-space: nowrap;
-  font-weight: bold;
 }
 
 .article-cnt.-rank1 {
   color: #e3b72a;
+  font-weight: bold;
 }
 
 .article-cnt.-rank2 {
   color: #989898;
+  font-weight: bold;
 }
 
 .article-cnt.-rank3 {
   color: #b47950;
+  font-weight: bold;
 }
 
 .article-cnt > .suffix {
@@ -154,4 +156,8 @@ p {
 
 .accordion-body > * {
   margin-top: 1em;
+}
+
+.pt-05 {
+  padding-top: 0.5em;
 }
