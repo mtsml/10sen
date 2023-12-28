@@ -1,7 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import ArticleList from "@/components/ArticleList";
-import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME } from "@/util/const";
@@ -30,17 +31,34 @@ const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
       <Head>
         <title>{name} - {SERVICE_NAME}</title>
       </Head>
-      <h2 className="flex-space-between">
+      <h2 className="article-h2">
         <span>{name}</span>
-        <ExternalLinkIcon href={url} />
       </h2>
       <div className="container">
-        <p>TODO: ネタバレ防止措置を考える</p>
+        <p>
+          <a
+            className="pure-menu-link"
+            href={url}
+            target="_blank"
+          >
+            <span>記事を見る</span>
+            <FontAwesomeIcon
+              className="external-link-icon"
+              icon={faUpRightFromSquare}
+            />
+          </a>
+        </p>
+      </div>
+      <h3>紹介されている曲</h3>
+      <div className="container">
         <SongList songs={songs} />
       </div>
-      <h2>レコメンド（TODO: 文言考える）</h2>
+      <h3>同じ曲を紹介している記事</h3>
       <div className="container">
-        <ArticleList articles={relatedArticles} />
+        {relatedArticles.length === 0
+          ? <p>同じ曲を紹介している記事はありません。</p>
+          : <ArticleList articles={relatedArticles} />
+        }
       </div>
     </>
   );

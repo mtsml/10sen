@@ -10,45 +10,56 @@ body {
   font-family: YakuHanJP, "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
   width: 100%;
   white-space: normal;
+  color: #333333;
 }
 
 main {
-  max-width: 800px;
+  max-width: 600px;
   padding: 1em;
   margin: 0 auto;
 }
 
 header {
   background-color: rgb(61, 79, 93);
-  color: #fff;
   font-weight: bold;
-  display: block;
-  padding: 1em;
+  display: flex;
+  justify-content: center;
+  padding: 1em 1.2em;
 }
 
 header a {
   font-size: 150%;
   text-decoration: none;
-  color: rgb(92, 163, 209);
-}
-
-header .separator {
-  font-size: 150%;
-  padding: 0 0.5em;
-  color: #ddd;
+  color: #eee;
 }
 
 li {
   list-style: none;
 }
 
+h1 {
+  font-size: 2em;
+  font-weight: bold;
+  margin: 0.5em 0.2em;
+  align-items: center;
+}
+
 h2 {
+  font-size: 1.5em;
+  font-weight: bold;
   border-bottom: 1px solid #eee;
   padding: 0.4em 0.2em;
 }
 
+h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 0em 0.5em;
+}
+
 p {
-  margin-bottom: 1em;
+  line-height: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .flex-space-between {
@@ -56,18 +67,12 @@ p {
   justify-content: space-between;
 }
 
-.external-link-icon {
-  padding: 0 0 0 0.5em;
-  color: #767676;
-  align-self: center;
-}
-
 .container {
   padding: 1em 0.5em;
 }
 
 .pure-menu-item {
-  margin-bottom: 0.8em;
+  margin-bottom: 0.5em;
 }
 
 .pure-menu-link {
@@ -91,6 +96,16 @@ p {
   background-color: inherit;
 }
 
+.external-link-icon {
+  padding: 0 0 0 0.5em;
+  color: #767676;
+  align-self: center;
+}
+
+.external-link-icon.-inline {
+  padding: 0 0.2em;
+}
+
 .year-container {
   font-size: 200%;
   font-weight: bold;
@@ -106,4 +121,36 @@ p {
   padding: 0 0 0 0.5em;
   align-self: center;
   white-space: nowrap;
+}
+
+.article-cnt.rank1 {
+  color: goldenrod;
+}
+
+.article-cnt.rank2 {
+  color: silver;
+}
+
+.article-cnt.rank3 {
+  color: #815a2b;
+}
+
+.accordion {
+  background-color: #eee;
+  border-radius: 5px;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.accordion-header {
+  cursor: pointer;
+}
+
+.accordion-body {
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.accordion-body > * {
+  margin-top: 1em;
 }

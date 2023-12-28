@@ -28,6 +28,7 @@ interface fetchPopularSongsByYearRes {
   song_name: string;
   artist_name: string;
   articles_cnt: number;
+  rank: number;
 }
 const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsByYearRes[]> => {
   const { rows } = await sql`
@@ -35,7 +36,8 @@ const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsB
       song.id AS song_id,
       song.name AS song_name,
       artist.name AS artist_name,
-      sub.articles_cnt AS articles_cnt
+      sub.articles_cnt AS articles_cnt,
+      rank
     FROM (
       SELECT
         song_id,
@@ -54,6 +56,8 @@ const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsB
         ON sub.song_id = song.id
       INNER JOIN artist
         ON song.artist_id = artist.id
+    WHERE
+      rank <= 3
     ORDER BY
       articles_cnt DESC,
       song_name,
@@ -63,7 +67,8 @@ const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsB
     song_id: row.song_id,
     song_name: row.song_name,
     artist_name: row.artist_name,
-    articles_cnt: row.articles_cnt
+    articles_cnt: row.articles_cnt,
+    rank: row.rank
   }))
 }
 

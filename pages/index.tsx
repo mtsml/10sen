@@ -14,6 +14,9 @@ const Home = ({ years }: HomeProps) => {
       <Head>
         <title>{SERVICE_NAME}</title>
       </Head>
+      <div className="container">
+        <p>楽曲10選まとめは楽曲10選をまとめるサービスです。</p>
+      </div>
       <div className="year-container">
         <ul className="pure-menu">
           {years.map(year => (

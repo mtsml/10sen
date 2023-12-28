@@ -35,7 +35,7 @@ const Song = ({ song_name, artist_name, video_id, articles }: SongProps) => {
           : "視聴動画を準備中です。"
         }
       </div>
-      <h2>紹介記事</h2>
+      <h3>この曲を紹介している記事</h3>
       <div className="container">
         <ArticleList articles={articles} />
       </div>

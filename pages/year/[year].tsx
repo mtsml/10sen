@@ -24,7 +24,7 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <Head>
         <title>{year}年 - {SERVICE_NAME}</title>
       </Head>
-      <h2>{year}年の記事一覧</h2>
+      <h2>{year}年の記事</h2>
       <div className="container">
         <ArticleList articles={articles} />
       </div>
