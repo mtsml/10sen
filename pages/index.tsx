@@ -32,7 +32,7 @@ const Home = ({ years }: HomeProps) => {
                 className="pure-menu-link"
                 href={`/year/${encodeURIComponent(year)}`}
               >
-                {year}年の記事を見にいく<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
+                {year}年の記事を見る<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
               </Link>
             </li>
           ))}

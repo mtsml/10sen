@@ -1,7 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import Imformation from "@/components/Information";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
@@ -47,6 +48,14 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <h2>{year}年の人気曲</h2>
       <div className="container">
         <SongList songs={popularSongs} />
+        <p className="pt-05">
+          <Link
+            className="pure-menu-link"
+            href={`/year/${encodeURIComponent(year)}/songs`}
+          >
+            {year}年に紹介されたすべての曲を見る<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
+          </Link>
+        </p>
       </div>
     </>
   );
