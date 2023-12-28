@@ -1,5 +1,5 @@
 import { Html, Head, Main, NextScript } from "next/document";
-import { SERVICE_NAME } from "@/util/const";
+import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 export default function Document() {
   return (
@@ -10,6 +10,7 @@ export default function Document() {
         <meta name="description" content="楽曲10選をまとめます" />
         <meta name="og:type" content="article" />
         <meta name="og:site_name" content={SERVICE_NAME} />
+        <meta name="og:image" content={`${SERVICE_URL}icon-512x512.png`} />
         <meta name="twitter:card" content="summary" />
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
