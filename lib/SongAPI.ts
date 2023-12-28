@@ -60,8 +60,8 @@ const fetchPopularSongsByYear = async (year: number): Promise<fetchPopularSongsB
       rank <= 3
     ORDER BY
       articles_cnt DESC,
-      song_name,
-      artist_name
+      artist_name,
+      song_name
   `;
   return rows.map(row => ({
     song_id: row.song_id,
