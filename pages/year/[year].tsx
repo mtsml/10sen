@@ -1,6 +1,5 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import Accordion from "@/components/Accordion";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
@@ -25,14 +24,11 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <Head>
         <title>{year}年 - {SERVICE_NAME}</title>
       </Head>
-      <h1>{year}年</h1>
-      <Accordion title="はじめての方へ">
-      </Accordion>
-      <h2>記事の一覧</h2>
+      <h2>{year}年の記事</h2>
       <div className="container">
         <ArticleList articles={articles} />
       </div>
-      <h2>人気曲</h2>
+      <h2>{year}年の人気曲</h2>
       <div className="container">
         <SongList songs={popularSongs} />
       </div>
