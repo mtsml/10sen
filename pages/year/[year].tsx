@@ -5,7 +5,7 @@ import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
 import Article from "@/types/article";
-import { SERVICE_NAME } from "@/util/const";
+import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface YearProps {
   year: number;
@@ -19,10 +19,14 @@ interface YearProps {
 }
 
 const Year = ({ year, articles, popularSongs }: YearProps) => {
+  const title = `${year}年 - ${SERVICE_NAME}`;
+
   return (
     <>
       <Head>
-        <title>{year}年 - {SERVICE_NAME}</title>
+        <title>{title}</title>
+        <meta name="og:title" content={title} />
+        <meta name="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
       <h2>{year}年の記事</h2>
       <div className="container">

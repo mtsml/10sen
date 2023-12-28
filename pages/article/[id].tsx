@@ -5,9 +5,10 @@ import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
-import { SERVICE_NAME } from "@/util/const";
+import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface ArticleProps {
+  id: number;
   url: string;
   name: string;
   songs: Array<{
@@ -25,11 +26,15 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
+  const title = `${name} - ${SERVICE_NAME}`;
+
   return (
     <>
       <Head>
-        <title>{name} - {SERVICE_NAME}</title>
+        <title>{title}</title>
+        <meta name="og:title" content={title} />
+        <meta name="og:url" content={`${SERVICE_URL}article/${id}`} />
       </Head>
       <h2 className="article-h2">
         <span>{name}</span>
@@ -88,6 +93,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      id,
       name,
       url,
       songs,

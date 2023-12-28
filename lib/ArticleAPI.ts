@@ -154,7 +154,8 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
     GROUP BY
       other.article_id
     ORDER BY
-      songs_cnt DESC
+      songs_cnt DESC,
+      id DESC
   `;
 
   const result = await Promise.all([
