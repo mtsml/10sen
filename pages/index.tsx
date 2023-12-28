@@ -1,6 +1,8 @@
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
@@ -19,7 +21,7 @@ const Home = ({ years }: HomeProps) => {
       <div className="container">
         <p>楽曲10選まとめは楽曲10選をまとめます。</p>
       </div>
-      <div className="year-container">
+      <div className="container">
         <ul className="pure-menu">
           {years.map(year => (
             <li
@@ -30,7 +32,7 @@ const Home = ({ years }: HomeProps) => {
                 className="pure-menu-link"
                 href={`/year/${encodeURIComponent(year)}`}
               >
-                {year}年
+                {year}年の記事を見にいく<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
               </Link>
             </li>
           ))}

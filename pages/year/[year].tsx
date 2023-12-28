@@ -35,7 +35,7 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <div className="container">
         <Imformation>
           <FontAwesomeIcon
-            className="external-link-icon -inline"
+            className="icon external-link-icon -inline"
             icon={faUpRightFromSquare}
           />
           <span>
