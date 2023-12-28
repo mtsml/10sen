@@ -102,15 +102,8 @@ p {
   align-self: center;
 }
 
-.external-link-icon.-inline {
+.icon.-inline {
   padding: 0 0.2em;
-}
-
-.year-container {
-  font-size: 200%;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
 }
 
 .video {
@@ -121,25 +114,33 @@ p {
   padding: 0 0 0 0.5em;
   align-self: center;
   white-space: nowrap;
+  font-weight: bold;
 }
 
-.article-cnt.rank1 {
-  color: goldenrod;
+.article-cnt.-rank1 {
+  color: #e3b72a;
 }
 
-.article-cnt.rank2 {
-  color: silver;
+.article-cnt.-rank2 {
+  color: #989898;
 }
 
-.article-cnt.rank3 {
-  color: #815a2b;
+.article-cnt.-rank3 {
+  color: #b47950;
 }
 
-.accordion {
+.article-cnt > .suffix {
+  font-size: 0.5em;
+  padding-left: 0.2em
+}
+
+.accordion,
+.information {
   background-color: #eee;
   border-radius: 5px;
   padding: 1em;
   margin-bottom: 1em;
+  font-size: 0.8em;
 }
 
 .accordion-header {

@@ -4,20 +4,25 @@ import ArticleList from "@/components/ArticleList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
 import Article from "@/types/article";
-import { SERVICE_NAME } from "@/util/const";
+import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface SongProps {
+  id: number;
   song_name: string;
   artist_name: string;
   video_id: string | null;
   articles: Array<Article>;
 }
 
-const Song = ({ song_name, artist_name, video_id, articles }: SongProps) => {
+const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => {
+  const title = `${song_name}/${artist_name} - ${SERVICE_NAME}`;
+
   return (
     <>
       <Head>
-        <title>{song_name} / {artist_name} - {SERVICE_NAME}</title>
+        <title>{title}</title>
+        <meta name="og:title" content={title} />
+        <meta name="og:url" content={`${SERVICE_URL}song/${id}`} />
       </Head>
       <h2>{song_name} / {artist_name}</h2>
       <div className="container">
@@ -71,6 +76,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
+      id,
       song_name,
       artist_name,
       video_id,
