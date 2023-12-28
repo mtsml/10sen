@@ -2,14 +2,12 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import Accordion from "@/components/Accordion";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME } from "@/util/const";
 
 interface ArticleProps {
-  id: number;
   url: string;
   name: string;
   songs: Array<{
@@ -27,7 +25,7 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ url, name, songs, relatedArticles }: ArticleProps) => {
   return (
     <>
       <Head>
@@ -50,9 +48,10 @@ const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
             />
           </a>
         </p>
-        <Accordion id={id} title="選曲を見る">
-          <SongList songs={songs} />
-        </Accordion>
+      </div>
+      <h3>紹介されている曲</h3>
+      <div className="container">
+        <SongList songs={songs} />
       </div>
       <h3>同じ曲を紹介している記事</h3>
       <div className="container">
@@ -89,7 +88,6 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      id,
       name,
       url,
       songs,

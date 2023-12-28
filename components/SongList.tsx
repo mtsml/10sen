@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 
 interface SongListProps {
   songs: Array<{
@@ -8,6 +6,7 @@ interface SongListProps {
     song_name: string;
     artist_name: string;
     articles_cnt?: number;
+    rank?: number;
   }>;
 }
 const SongList = ({ songs }: SongListProps) => {
@@ -25,9 +24,10 @@ const SongList = ({ songs }: SongListProps) => {
             {song.song_name} / {song.artist_name}
           </Link>
           {song.articles_cnt &&
-            <span className="article-cnt">
-              {song.articles_cnt}<small> Posts</small>
-            </span>
+            <div className={`article-cnt rank${song.rank}`}>
+              <span>{song.articles_cnt}</span>
+              <small>Posts</small>
+            </div>
           }
         </li>
       ))}
