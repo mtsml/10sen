@@ -37,7 +37,7 @@ const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
           ></iframe>
-          : "視聴動画を準備中です。"
+          : <p>視聴動画を準備中です。</p>
         }
       </div>
       <h3>この曲を紹介している記事</h3>

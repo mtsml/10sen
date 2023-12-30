@@ -140,6 +140,7 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
       (SELECT url FROM article WHERE id = other.article_id) AS url,
       (SELECT name FROM article WHERE id = other.article_id) AS name,
       COUNT(*) AS songs_cnt,
+      SUM(me.sort_no) AS sort_no_sum,
       STRING_AGG(
         (SELECT name FROM song WHERE id = other.song_id),
         ' / ' ORDER BY me.sort_no
@@ -155,6 +156,7 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
       other.article_id
     ORDER BY
       songs_cnt DESC,
+      sort_no_sum,
       id DESC
   `;
 
