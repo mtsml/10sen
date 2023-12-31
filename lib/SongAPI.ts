@@ -36,13 +36,13 @@ const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise
       song.id AS song_id,
       song.name AS song_name,
       artist.name AS artist_name,
-      sub.articles_cnt AS articles_cnt,
+      articles_cnt,
       rank
     FROM (
       SELECT
         song_id,
         COUNT(*) AS articles_cnt,
-        DENSE_RANK() OVER (ORDER BY COUNT(*) desc) AS rank
+        DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS rank
       FROM
         article_song_map
         INNER JOIN article
@@ -51,9 +51,9 @@ const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise
         year = ${year}
       GROUP BY
         song_id
-    ) sub
+    ) song_agg
       INNER JOIN song
-        ON sub.song_id = song.id
+        ON song_agg.song_id = song.id
       INNER JOIN artist
         ON song.artist_id = artist.id
     WHERE
