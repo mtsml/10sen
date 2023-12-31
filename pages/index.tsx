@@ -26,7 +26,7 @@ const Home = ({ years }: HomeProps) => {
           {years.map(year => (
             <li
               key={year}
-              className="pure-menu-item"
+              className="pure-menu-item flex-space-between"
             >
               <Link
                 className="pure-menu-link"

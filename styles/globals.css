@@ -60,6 +60,7 @@ h3 {
 p {
   line-height: 1.5em;
   margin-bottom: 0.5em;
+  padding-left: 0.2em;
 }
 
 .flex-space-between {
@@ -160,6 +161,10 @@ p {
 
 .pt-05 {
   padding-top: 0.5em;
+}
+
+.pl-05 {
+  padding-left: 0.5em;
 }
 
 .mb-1 {
