@@ -1,6 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import ArticleList from "@/components/ArticleList";
+import TwitterShareLink from "@/components/TwitterShareLink";
 import YouTube from "@/components/YouTube";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
@@ -35,6 +36,13 @@ const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => 
       <h3>この曲を紹介している記事</h3>
       <div className="container">
         <ArticleList articles={articles} />
+      </div>
+      <div className="container flex-center">
+        <TwitterShareLink
+          text={`${artist_name}の${song_name}を紹介している${articles.length}件の記事があります。`}
+          url={`${SERVICE_URL}song/${id}`}
+          hashtags={["楽曲10選まとめ"]}
+        />
       </div>
     </>
   );
