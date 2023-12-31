@@ -17,9 +17,7 @@ const YouTube = ({ videoId }: YouTubeProps) => {
             speed={2}
             width="100%"
             height="315px"
-            style={{
-              maxWidth: "560px"
-            }}
+            style={{ maxWidth: "560px" }}
             title="YouTube動画を読み込んでいます。"
           >
             <rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" />
