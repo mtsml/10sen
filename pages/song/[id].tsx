@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import ArticleList from "@/components/ArticleList";
-import YouTube from "@/components/Youtube";
+import YouTube from "@/components/YouTube";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
 import Article from "@/types/article";
