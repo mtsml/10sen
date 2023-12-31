@@ -71,7 +71,7 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
       </div>
       <div className="container flex-center mb-1">
         <TwitterShareLink
-          text={`「${name}」とその関連記事を見てみましょう。`}
+          text={`「${name}」とその関連記事を見てみよう。`}
           url={`${SERVICE_URL}article/${id}`}
           hashtags={["楽曲10選まとめ"]}
         />
