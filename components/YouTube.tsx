@@ -1,0 +1,44 @@
+import { useState } from "react";
+import ContentLoader from "react-content-loader";
+
+interface YouTubeProps {
+  videoId: string;
+}
+
+const YouTube = ({ videoId }: YouTubeProps) => {
+  const [ isLoading, setIsLoading ] = useState(true);
+
+  return (
+    <>
+      {isLoading &&
+        <div className="content-loader-wrapper">
+          <ContentLoader
+            className="content-loader"
+            speed={2}
+            width="100%"
+            height="315px"
+            style={{
+              maxWidth: "560px"
+            }}
+            title="YouTube動画を読み込んでいます。"
+          >
+            <rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" />
+          </ContentLoader>
+        </div>
+      }
+      <iframe
+          className="video"
+          width="560"
+          height="315"
+          src={`https://www.youtube.com/embed/${videoId}`}
+          title="YouTube video player"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          onLoad={() => setIsLoading(false)}
+        ></iframe>
+    </>
+  );
+}
+
+export default YouTube;

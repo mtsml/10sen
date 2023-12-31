@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
+import Tweet from "@/components/Tweet";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
@@ -11,6 +12,7 @@ interface ArticleProps {
   id: number;
   url: string;
   name: string;
+  tweetUrl: string | null;
   songs: Array<{
     song_id: number,
     song_name: string,
@@ -26,7 +28,7 @@ interface ArticleProps {
   }>;
 }
 
-const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
+const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticleProps) => {
   const title = `${name} - ${SERVICE_NAME}`;
 
   return (
@@ -40,7 +42,7 @@ const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
         <span>{name}</span>
       </h2>
       <div className="container">
-        <p>
+        <p className="mb-1">
           <a
             className="pure-menu-link"
             href={url}
@@ -53,6 +55,7 @@ const Article = ({ id, url, name, songs, relatedArticles }: ArticleProps) => {
             />
           </a>
         </p>
+        {tweetUrl && <Tweet url={tweetUrl}/>}
       </div>
       <h3>紹介されている曲</h3>
       <div className="container">
@@ -89,7 +92,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const id = context.params && context.params.id;
 
-  const { name, url, songs, relatedArticles } = await ArticleAPI.fetchArticle(Number(id));
+  const { name, url, songs, relatedArticles, tweetUrl } = await ArticleAPI.fetchArticle(Number(id));
 
   return {
     props: {
@@ -97,7 +100,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       name,
       url,
       songs,
-      relatedArticles
+      relatedArticles,
+      tweetUrl
     }
   }
 }

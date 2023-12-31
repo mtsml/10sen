@@ -90,6 +90,7 @@ return result.rows.map(row => ({
 interface fetchArticleRes {
   url: string;
   name: string;
+  tweetUrl: string;
   songs: Array<{
     song_id: number,
     song_name: string,
@@ -108,7 +109,8 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
   const articleQuery = sql`
     SELECT
       name,
-      url
+      url,
+      tweet_url
     FROM
       article
     WHERE
@@ -168,6 +170,7 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
   return {
     name: articleResult.rows[0].name,
     url: articleResult.rows[0].url,
+    tweetUrl: articleResult.rows[0].tweet_url,
     songs: songResult.rows.map(row => ({
       song_id: row.song_id,
       song_name: row.song_name,
