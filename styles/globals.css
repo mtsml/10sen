@@ -161,3 +161,18 @@ p {
 .pt-05 {
   padding-top: 0.5em;
 }
+
+.mb-1 {
+  margin-bottom: 1em;
+}
+
+.content-loader-wrapper {
+  position: relative;
+}
+
+.content-loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
