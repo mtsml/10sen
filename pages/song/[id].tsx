@@ -37,7 +37,7 @@ const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => 
       <div className="container">
         <ArticleList articles={articles} />
       </div>
-      <div className="container flex-center">
+      <div className="container flex-center mb-1">
         <TwitterShareLink
           text={`${artist_name}の${song_name}を紹介している${articles.length}件の記事があります。`}
           url={`${SERVICE_URL}song/${id}`}
