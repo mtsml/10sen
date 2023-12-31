@@ -16,7 +16,7 @@ interface SongProps {
 }
 
 const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => {
-  const title = `${song_name}/${artist_name} - ${SERVICE_NAME}`;
+  const title = `${song_name} / ${artist_name} - ${SERVICE_NAME}`;
 
   return (
     <>
