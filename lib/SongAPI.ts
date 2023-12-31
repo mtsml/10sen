@@ -41,8 +41,19 @@ const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise
     FROM (
       SELECT
         song_id,
-        COUNT(*) AS articles_cnt,
-        DENSE_RANK() OVER (ORDER BY COUNT(*) DESC) AS rank
+        -- 「8: 素顔のピクセル」は負けない
+        CASE
+          WHEN song_id = 8 THEN 999
+          ELSE COUNT(*)
+        END AS articles_cnt,
+        DENSE_RANK() OVER (
+          ORDER BY
+            CASE
+              WHEN song_id = 8 THEN 999
+              ELSE COUNT(*)
+            END
+          DESC
+        ) AS rank
       FROM
         article_song_map
         INNER JOIN article
