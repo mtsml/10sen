@@ -26,7 +26,7 @@ const SongList = ({ songs }: SongListProps) => {
           {song.articles_cnt &&
             <div className={`article-cnt -rank${song.rank}`}>
               <span>{song.articles_cnt}</span>
-              <span className="suffix">Posts</span>
+              <span className="suffix">{Number(song.articles_cnt) === 1 ? "Post" : "Posts"}</span>
             </div>
           }
         </li>

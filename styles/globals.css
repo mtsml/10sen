@@ -68,6 +68,11 @@ p {
   justify-content: space-between;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   padding: 1em 0.5em;
 }
@@ -101,6 +106,10 @@ p {
   padding: 0 0 0 0.5em;
   color: #767676;
   align-self: center;
+}
+
+.twitter-share-icon {
+  padding-right: 0.5em;
 }
 
 .icon.-inline {
@@ -161,10 +170,6 @@ p {
 
 .pt-05 {
   padding-top: 0.5em;
-}
-
-.pl-05 {
-  padding-left: 0.5em;
 }
 
 .mb-1 {

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import TwitterShareLink from "@/components/TwitterShareLink";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
@@ -37,6 +38,13 @@ const Home = ({ years }: HomeProps) => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="container flex-center mb-1">
+        <TwitterShareLink
+          text={"楽曲10選がまとめられています。"}
+          url={SERVICE_URL}
+          hashtags={["楽曲10選まとめ"]}
+        />
       </div>
     </>
   );
