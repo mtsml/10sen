@@ -5,6 +5,7 @@ import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
 import Tweet from "@/components/Tweet";
+import TwitterShareLink from "@/components/TwitterShareLink";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
@@ -67,6 +68,13 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
           ? <p>同じ曲を紹介している記事はありません。</p>
           : <ArticleList articles={relatedArticles} />
         }
+      </div>
+      <div className="container flex-center mb-1">
+        <TwitterShareLink
+          text={`「${name}」とその関連記事を見てみましょう。`}
+          url={`${SERVICE_URL}article/${id}`}
+          hashtags={["楽曲10選まとめ"]}
+        />
       </div>
     </>
   );

@@ -6,6 +6,7 @@ import { faArrowRight, faUpRightFromSquare } from "@fortawesome/free-solid-svg-i
 import Imformation from "@/components/Information";
 import ArticleList from "@/components/ArticleList";
 import SongList from "@/components/SongList";
+import TwitterShareLink from "@/components/TwitterShareLink";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
 import Article from "@/types/article";
@@ -56,6 +57,13 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
             {year}年に紹介されたすべての曲を見る<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
           </Link>
         </p>
+      </div>
+      <div className="container flex-center mb-1">
+        <TwitterShareLink
+          text={`${year}年の楽曲10選を紹介している${articles.length}件の記事があります。`}
+          url={`${SERVICE_URL}year/${year}`}
+          hashtags={["楽曲10選まとめ"]}
+        />
       </div>
     </>
   );
