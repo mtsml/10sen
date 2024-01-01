@@ -56,7 +56,13 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
             />
           </a>
         </p>
-        {tweetUrl && <Tweet url={tweetUrl}/>}
+        {tweetUrl
+          && <Tweet
+              // 関連記事から遷移した際にコンポーネントを初期化するためにkeyを設定する
+              key={tweetUrl}
+              url={tweetUrl}
+            />
+        }
       </div>
       <h3>紹介されている曲</h3>
       <div className="container">
