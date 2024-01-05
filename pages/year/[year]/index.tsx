@@ -3,13 +3,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import Imformation from "@/components/Information/Information";
-import ArticleList from "@/components/ArticleList/ArticleList";
-import SongList from "@/components/SongList/SongList";
-import TwitterShareLink from "@/components/TwitterShareLink/TwitterShareLink";
-import ArticleAPI from "@/lib/ArticleAPI";
-import SongAPI from "@/lib/SongAPI";
-import Article from "@/types/article";
+import { ArticleList, Information, SongList, TwitterShareLink } from "@/components";
+import { ArticleAPI, SongAPI } from "@/lib";
+import type { Article } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface YearProps {
@@ -35,7 +31,7 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       </Head>
       <h2>{year}年の記事</h2>
       <div className="container">
-        <Imformation>
+        <Information>
           <FontAwesomeIcon
             className="icon external-link-icon -inline"
             icon={faUpRightFromSquare}
@@ -43,7 +39,7 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
           <span>
             をクリックすると記事（外部サイト）を開きます。
           </span>
-        </Imformation>
+        </Information>
         <ArticleList articles={articles} />
       </div>
       <h2>{year}年の人気曲</h2>

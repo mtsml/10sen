@@ -1,11 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import ArticleList from "@/components/ArticleList/ArticleList";
-import TwitterShareLink from "@/components/TwitterShareLink/TwitterShareLink";
-import YouTube from "@/components/YouTube/YouTube";
-import ArticleAPI from "@/lib/ArticleAPI";
-import SongAPI from "@/lib/SongAPI";
-import Article from "@/types/article";
+import { ArticleList, TwitterShareLink, YouTube } from "@/components";
+import { ArticleAPI, SongAPI } from "@/lib";
+import type { Article } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface SongProps {

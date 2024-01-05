@@ -1,6 +1,6 @@
 import Link from "next/link";
-import ExternalLinkIcon from "@/components/ExternalLinkIcon/ExternalLinkIcon";
-import Article from "@/types/article";
+import { ExternalLinkIcon } from "@/components";
+import type { Article } from "@/types";
 
 interface ArticleWithRelatedSongs extends Article {
   songs_cnt?: number;

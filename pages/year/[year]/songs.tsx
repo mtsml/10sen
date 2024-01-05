@@ -1,9 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import SongList from "@/components/SongList/SongList";
-import TwitterShareLink from "@/components/TwitterShareLink/TwitterShareLink";
-import ArticleAPI from "@/lib/ArticleAPI";
-import SongAPI from "@/lib/SongAPI";
+import { SongList, TwitterShareLink } from "@/components";
+import { ArticleAPI, SongAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface SongsProps {

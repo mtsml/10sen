@@ -3,8 +3,8 @@ import Link from "next/link";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import TwitterShareLink from "@/components/TwitterShareLink/TwitterShareLink";
-import ArticleAPI from "@/lib/ArticleAPI";
+import { TwitterShareLink } from "@/components";
+import { ArticleAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 interface HomeProps {
