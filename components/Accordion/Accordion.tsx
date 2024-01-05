@@ -1,6 +1,7 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
+import styles from "./Accordion.module.css";
 
 interface AccordionProps {
   header: ReactNode;
@@ -19,9 +20,9 @@ const Accordion = ({ header, children }: AccordionProps) => {
   }, [isOpen]);
 
   return (
-    <div className="accordion">
+    <div className={styles.accordion}>
       <div
-        className="accordion-header flex-space-between"
+        className={styles["accordion-header"]}
         onClick={() => setIsOpen(!isOpen)}
       >
         {header}
@@ -32,7 +33,7 @@ const Accordion = ({ header, children }: AccordionProps) => {
       </div>
       <div
         ref={ref}
-        className="accordion-body"
+        className={styles["accordion-body"]}
         style={{ maxHeight: height }}
       >
         {children}

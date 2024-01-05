@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ContentLoader from "react-content-loader";
+import styles from "./YouTube.module.css";
 
 interface YouTubeProps {
   videoId: string;
@@ -25,7 +26,7 @@ const YouTube = ({ videoId }: YouTubeProps) => {
         </div>
       }
       <iframe
-        className="video"
+        className={styles.video}
         width="560"
         height="315"
         style={{ visibility: isLoading ? "hidden" : "visible" }}

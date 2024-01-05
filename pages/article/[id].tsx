@@ -2,10 +2,10 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import ArticleList from "@/components/ArticleList";
-import SongList from "@/components/SongList";
-import Tweet from "@/components/Tweet";
-import TwitterShareLink from "@/components/TwitterShareLink";
+import ArticleList from "@/components/ArticleList/ArticleList";
+import SongList from "@/components/SongList/SongList";
+import Tweet from "@/components/Tweet/Tweet";
+import TwitterShareLink from "@/components/TwitterShareLink/TwitterShareLink";
 import ArticleAPI from "@/lib/ArticleAPI";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 

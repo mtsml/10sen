@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ExternalLinkIcon from "@/components/ExternalLinkIcon";
+import ExternalLinkIcon from "@/components/ExternalLinkIcon/ExternalLinkIcon";
 import Article from "@/types/article";
 
 interface ArticleWithRelatedSongs extends Article {

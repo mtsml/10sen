@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import styles from "./ExternalLinkIcon.module.css";
 
 interface ExternalLinkIconProps {
   href: string;
@@ -8,7 +9,7 @@ interface ExternalLinkIconProps {
 const ExternalLinkIcon = ({ href }: ExternalLinkIconProps) => {
   return (
     <a
-      className="external-link-icon"
+      className={styles["external-link-icon"]}
       href={href}
       target="_blank"
     >

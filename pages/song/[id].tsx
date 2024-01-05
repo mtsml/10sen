@@ -1,8 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import ArticleList from "@/components/ArticleList";
-import TwitterShareLink from "@/components/TwitterShareLink";
-import YouTube from "@/components/YouTube";
+import ArticleList from "@/components/ArticleList/ArticleList";
+import TwitterShareLink from "@/components/TwitterShareLink/TwitterShareLink";
+import YouTube from "@/components/YouTube/YouTube";
 import ArticleAPI from "@/lib/ArticleAPI";
 import SongAPI from "@/lib/SongAPI";
 import Article from "@/types/article";

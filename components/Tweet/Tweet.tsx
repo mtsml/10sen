@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import ContentLoader from "react-content-loader";
+import styles from "./Tweet.module.css";
 
 interface TweetProps {
   url: string;
@@ -35,7 +36,7 @@ const Tweet = ({ url }: TweetProps) => {
   }, []);
 
   return (
-    <div className="mb-1">
+    <div className={styles.tweet}>
       {isLoading &&
         <div className="content-loader-wrapper">
           <ContentLoader

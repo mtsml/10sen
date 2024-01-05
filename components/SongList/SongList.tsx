@@ -1,4 +1,5 @@
 import Link from "next/link";
+import styles from "./SongList.module.css";
 
 interface SongListProps {
   songs: Array<{
@@ -24,9 +25,9 @@ const SongList = ({ songs }: SongListProps) => {
             {song.song_name} / {song.artist_name}
           </Link>
           {song.articles_cnt &&
-            <div className={`article-cnt -rank${song.rank}`}>
+            <div className={`${styles["article-cnt"]} ${styles[`-rank${song.rank}`]}`}>
               <span>{song.articles_cnt}</span>
-              <span className="suffix">{Number(song.articles_cnt) === 1 ? "Post" : "Posts"}</span>
+              <span className={styles.suffix}>{Number(song.articles_cnt) === 1 ? "Post" : "Posts"}</span>
             </div>
           }
         </li>
