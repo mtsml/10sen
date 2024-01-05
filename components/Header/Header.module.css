@@ -1,0 +1,13 @@
+.header {
+  background-color: rgb(61, 79, 93);
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  padding: 1em 1.2em;
+}
+
+.header a {
+  font-size: 150%;
+  text-decoration: none;
+  color: #eee;
+}
