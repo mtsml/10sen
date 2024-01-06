@@ -16,8 +16,8 @@ const fetchSongs = async (): Promise<Song[]> => {
   `;
 
   return rows.map(row => ({
-    song_id: row.id,
-    song_name: row.name,
+    song_id: row.song_id,
+    song_name: row.song_name,
     artist_name: row.artist_name
   }));
 }
