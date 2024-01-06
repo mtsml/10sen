@@ -3,7 +3,6 @@ import { ExternalLinkIcon } from "@/components";
 import type { Article } from "@/types";
 
 interface ArticleWithRelatedSongs extends Article {
-  songs_cnt?: number;
   songs_name?: string;
 }
 
