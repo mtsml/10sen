@@ -45,7 +45,7 @@ const Tweet = ({ url }: TweetProps) => {
             width="100%"
             height="600px"
             style={{ maxWidth: "550px" }}
-            backgroundColor="#e0e0e0"
+            backgroundColor="#e7e7e7"
             foregroundColor="#eeeeee"
             title="Xポストを読み込み中です。"
           >
