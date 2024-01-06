@@ -16,7 +16,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
       {articles.map(article => (
         <li
           key={article.id}
-          className="pure-menu-item flex-space-between"
+          className="pure-menu-item"
         >
           <Link
             className="pure-menu-link"
@@ -29,6 +29,7 @@ const ArticleList = ({ articles }: ArticleListProps) => {
           </Link>
           <ExternalLinkIcon
             href={article.url}
+            paddingLeft
           />
         </li>
       ))}

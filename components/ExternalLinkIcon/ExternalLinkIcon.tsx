@@ -3,21 +3,31 @@ import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ExternalLinkIcon.module.css";
 
 interface ExternalLinkIconProps {
-  href: string;
+  href?: string;
+  paddingRight?: boolean;
+  paddingLeft?: boolean;
 }
 
-const ExternalLinkIcon = ({ href }: ExternalLinkIconProps) => {
-  return (
-    <a
-      className={styles["external-link-icon"]}
-      href={href}
-      target="_blank"
-    >
-      <FontAwesomeIcon
+const ExternalLinkIcon = ({ href, paddingRight = false, paddingLeft = false }: ExternalLinkIconProps) => {
+  const classNames = [styles["external-link-icon"]];
+  paddingRight && classNames.push(styles["padding-right"]);
+  paddingLeft && classNames.push(styles["padding-left"]);
+  const className = classNames.join(" ");
+
+  return href
+    ? <a
+        href={href}
+        target="_blank"
+      >
+        <FontAwesomeIcon
+          className={className}
+          icon={faUpRightFromSquare}
+        />
+      </a>
+    : <FontAwesomeIcon
+        className={className}
         icon={faUpRightFromSquare}
       />
-    </a>
-  );
 }
 
 export default ExternalLinkIcon;

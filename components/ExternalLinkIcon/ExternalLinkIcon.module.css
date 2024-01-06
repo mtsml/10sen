@@ -1,5 +1,13 @@
 .external-link-icon {
-  padding: 0 0 0 0.5em;
+  padding: 0;
   color: #767676;
   align-self: center;
+}
+
+.external-link-icon.padding-right {
+  padding-right: 0.5em;
+}
+
+.external-link-icon.padding-left {
+  padding-left: 0.5em;
 }

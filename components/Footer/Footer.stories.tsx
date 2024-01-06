@@ -12,7 +12,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     twitterShareText: "ツイート本文",
-    twitterShareUrl: "https://10sen.wiki",
-    twitterShareHashtags: ["ハッシュタグ1", "ハッシュタグ2"]
+    twitterShareUrl: "https://10sen.wiki"
   }
 };

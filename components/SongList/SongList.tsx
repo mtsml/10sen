@@ -16,7 +16,7 @@ const SongList = ({ songs }: SongListProps) => {
       {songs.map(song => (
         <li
           key={song.song_id}
-          className="pure-menu-item flex-space-between"
+          className="pure-menu-item"
         >
           <Link
             className="pure-menu-link"

@@ -1,9 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { ArticleList, Footer, Information, SongList } from "@/components";
+import { ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, SongList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Article } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
@@ -32,10 +29,7 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <h2>{year}年の記事</h2>
       <div className="container">
         <Information>
-          <FontAwesomeIcon
-            className="icon external-link-icon -inline"
-            icon={faUpRightFromSquare}
-          />
+          <ExternalLinkIcon paddingRight />
           <span>
             をクリックすると記事（外部サイト）を開きます。
           </span>
@@ -45,13 +39,11 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
       <h2>{year}年の人気曲</h2>
       <div className="container">
         <SongList songs={popularSongs} />
-        <p className="pt-05">
-          <Link
-            className="pure-menu-link"
+        <p>
+          <LinkWithArrow
             href={`/year/${encodeURIComponent(year)}/songs`}
-          >
-            {year}年に紹介されたすべての曲を見る<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
-          </Link>
+            text={`${year}年に紹介されたすべての曲を見る`}
+          />
         </p>
       </div>
       <Footer

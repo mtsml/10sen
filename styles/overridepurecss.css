@@ -1,0 +1,26 @@
+/* PureCSSをオーバーライド */
+
+.pure-menu-item {
+  margin-bottom: 0.5em;
+}
+
+.pure-menu-link {
+  padding: 0.2em;
+  display: inline;
+  color: #767676;
+  white-space: normal;
+}
+
+@media (hover: none) {
+  .pure-menu-link:hover {
+    background-color: inherit;
+  }
+
+  .pure-menu-link:active {
+    background-color: #e0e0e0;
+  }
+}
+
+.pure-menu-link:focus {
+  background-color: inherit;
+}
