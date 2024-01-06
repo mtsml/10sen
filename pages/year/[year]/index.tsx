@@ -3,7 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { ArticleList, Information, SongList, TwitterShareLink } from "@/components";
+import { ArticleList, Footer, Information, SongList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Article } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
@@ -54,13 +54,10 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
           </Link>
         </p>
       </div>
-      <div className="container flex-center mb-1">
-        <TwitterShareLink
-          text={`${year}年の楽曲10選を紹介している${articles.length}件の記事があります。`}
-          url={`${SERVICE_URL}year/${year}`}
-          hashtags={["楽曲10選まとめ"]}
-        />
-      </div>
+      <Footer
+        twitterShareText={`${year}年の楽曲10選を紹介している${articles.length}件の記事があります。`}
+        twitterShareUrl={`${SERVICE_URL}year/${year}`}
+      />
     </>
   );
 }

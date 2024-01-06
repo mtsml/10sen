@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { SongList, TwitterShareLink } from "@/components";
+import { Footer, SongList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
@@ -28,13 +28,10 @@ const Songs = ({ year, songs }: SongsProps) => {
       <div className="container">
         <SongList songs={songs} />
       </div>
-      <div className="container flex-center mb-1">
-        <TwitterShareLink
-          text={`${year}年の楽曲10選記事では${songs.length}曲が紹介されています。`}
-          url={`${SERVICE_URL}year/${year}/songs`}
-          hashtags={["楽曲10選まとめ"]}
-        />
-      </div>
+      <Footer
+        twitterShareText={`${year}年の楽曲10選記事では${songs.length}曲が紹介されています。`}
+        twitterShareUrl={`${SERVICE_URL}year/${year}/songs`}
+      />
     </>
   );
 }

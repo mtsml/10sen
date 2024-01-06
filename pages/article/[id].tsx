@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import { ArticleList, SongList, Tweet, TwitterShareLink } from "@/components";
+import { ArticleList, Footer, SongList, Tweet } from "@/components";
 import { ArticleAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
@@ -72,13 +72,10 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
           : <ArticleList articles={relatedArticles} />
         }
       </div>
-      <div className="container flex-center mb-1">
-        <TwitterShareLink
-          text={`「${name}」とその関連記事を見てみよう。`}
-          url={`${SERVICE_URL}article/${id}`}
-          hashtags={["楽曲10選まとめ"]}
-        />
-      </div>
+      <Footer
+        twitterShareText={`「${name}」とその関連記事を見てみよう。`}
+        twitterShareUrl={`${SERVICE_URL}article/${id}`}
+      />
     </>
   );
 }

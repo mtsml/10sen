@@ -54,11 +54,6 @@ p {
   justify-content: space-between;
 }
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-}
-
 .container {
   padding: 1em 0.5em;
 }
