@@ -6,7 +6,7 @@ const meta = {
   component: Tweet,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
   },
 } satisfies Meta<typeof Tweet>;
 

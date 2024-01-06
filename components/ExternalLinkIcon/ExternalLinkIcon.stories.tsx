@@ -6,7 +6,7 @@ const meta = {
   component: ExternalLinkIcon,
   tags: ['autodocs'],
   parameters: {
-    layout: 'fullscreen',
+    layout: 'centered',
   },
 } satisfies Meta<typeof ExternalLinkIcon>;
 
