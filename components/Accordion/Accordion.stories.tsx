@@ -4,7 +4,6 @@ import Accordion from './Accordion';
 const meta = {
   title: 'Components/Accordion',
   component: Accordion,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

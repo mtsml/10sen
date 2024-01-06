@@ -4,7 +4,6 @@ import TwitterShareLink from './TwitterShareLink';
 const meta = {
   title: 'Components/TwitterShareLink',
   component: TwitterShareLink,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

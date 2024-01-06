@@ -4,7 +4,6 @@ import Tweet from './Tweet';
 const meta = {
   title: 'Components/Tweet',
   component: Tweet,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

@@ -4,7 +4,6 @@ import Information from './Information';
 const meta = {
   title: 'Components/Information',
   component: Information,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

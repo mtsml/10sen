@@ -4,7 +4,6 @@ import YouTube from './YouTube';
 const meta = {
   title: 'Components/YouTube',
   component: YouTube,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },

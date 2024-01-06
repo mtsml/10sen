@@ -4,7 +4,6 @@ import ExternalLinkIcon from './ExternalLinkIcon';
 const meta = {
   title: 'Components/ExternalLinkIcon',
   component: ExternalLinkIcon,
-  tags: ['autodocs'],
   parameters: {
     layout: 'centered',
   },
