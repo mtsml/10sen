@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import ContentLoader from "react-content-loader";
 import styles from "./Tweet.module.css";
 
-interface TweetProps {
+type TweetProps = {
   url: string;
 }
 
@@ -45,7 +45,7 @@ const Tweet = ({ url }: TweetProps) => {
             width="100%"
             height="600px"
             style={{ maxWidth: "550px" }}
-            backgroundColor="#e7e7e7"
+            backgroundColor="#e9e9e9"
             foregroundColor="#eeeeee"
             title="Xポストを読み込み中です。"
           >

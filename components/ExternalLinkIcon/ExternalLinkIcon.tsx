@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
 import styles from "./ExternalLinkIcon.module.css";
 
-interface ExternalLinkIconProps {
+type ExternalLinkIconProps = {
   href?: string;
   paddingRight?: boolean;
   paddingLeft?: boolean;

@@ -1,36 +1,28 @@
 import { sql } from "@vercel/postgres";
+import type { Song, PopularSong } from "@/types";
 
-interface fetchSongsRes {
-  id: number;
-  name: string;
-  artist_id: number;
-}
-const fetchSongs = async (): Promise<fetchSongsRes[]> => {
+const fetchSongs = async (): Promise<Song[]> => {
   const { rows } = await sql`
     SELECT
-      id,
-      name,
-      artist_id
+      song.id AS song_id,
+      song.name AS song_name,
+      artist.name AS artist_name
     FROM
       song
+      INNER JOIN artist
+        ON song.artist_id = artist_id
     ORDER BY
-      name
+      song_name
   `;
+
   return rows.map(row => ({
-    id: row.id,
-    name: row.name,
-    artist_id: row.artist_id
+    song_id: row.id,
+    song_name: row.name,
+    artist_name: row.artist_name
   }));
 }
 
-interface fetchPopularSongsByYearRes {
-  song_id: number;
-  song_name: string;
-  artist_name: string;
-  articles_cnt: number;
-  rank: number;
-}
-const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise<fetchPopularSongsByYearRes[]> => {
+const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise<PopularSong[]> => {
   const { rows } = await sql`
     SELECT
       song.id AS song_id,
@@ -63,21 +55,17 @@ const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise
       artist_name,
       song_name
   `;
+
   return rows.map(row => ({
     song_id: row.song_id,
     song_name: row.song_name,
     artist_name: row.artist_name,
     articles_cnt: row.articles_cnt,
     rank: row.rank
-  }))
+  }));
 }
 
-interface fetchSongRes {
-  song_name: string;
-  artist_name: string;
-  video_id: string | null;
-}
-const fetchSong = async (id: number): Promise<fetchSongRes> => {
+const fetchSong = async (id: number): Promise<Omit<Song, "song_id">> => {
   const { rows } = await sql`
     SELECT
       song.name AS song_name,
@@ -97,31 +85,10 @@ const fetchSong = async (id: number): Promise<fetchSongRes> => {
   };
 }
 
-interface fetchArtistsRes {
-  id: number;
-  name: string;
-}
-const fetchArtists = async (): Promise<fetchArtistsRes[]> => {
-  const { rows } = await sql`
-    SELECT
-      id,
-      name
-    FROM
-      artist
-    ORDER BY
-      name
-  `;
-  return rows.map(row => ({
-    id: row.id,
-    name: row.name
-  }));
-}
-
 const SongAPI = {
   fetchSong,
   fetchSongs,
-  fetchPopularSongsByYear,
-  fetchArtists
+  fetchPopularSongsByYear
 }
 
 export default SongAPI;

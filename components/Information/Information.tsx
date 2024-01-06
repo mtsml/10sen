@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import styles from "./Information.module.css";
 
-interface InformationProps {
+type InformationProps = {
   children: ReactNode;
 }
 

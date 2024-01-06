@@ -4,7 +4,7 @@ import { Footer, LinkWithArrow } from "@/components";
 import { ArticleAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
-interface HomeProps {
+type HomeProps = {
   years: number[];
 }
 

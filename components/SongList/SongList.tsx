@@ -1,15 +1,15 @@
 import Link from "next/link";
+import type { Song, PopularSong } from "@/types";
 import styles from "./SongList.module.css";
 
-interface SongListProps {
-  songs: Array<{
-    song_id: number;
-    song_name: string;
-    artist_name: string;
-    articles_cnt?: number;
-    rank?: number;
-  }>;
+const isPopularSong = (song: Song | PopularSong): song is PopularSong => {
+  return "articles_cnt" in song;
 }
+
+type SongListProps = {
+  songs : Song[] | PopularSong[];
+}
+
 const SongList = ({ songs }: SongListProps) => {
   return (
     <ul className="pure-menu">
@@ -24,7 +24,7 @@ const SongList = ({ songs }: SongListProps) => {
           >
             {song.song_name} / {song.artist_name}
           </Link>
-          {song.articles_cnt &&
+          {isPopularSong(song) &&
             <div className={`${styles["article-cnt"]} ${styles[`-rank${song.rank}`]}`}>
               <span>{song.articles_cnt}</span>
               <span className={styles.suffix}>{Number(song.articles_cnt) === 1 ? "Post" : "Posts"}</span>

@@ -2,18 +2,13 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, SongList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
-import type { Article } from "@/types";
+import type { Article, PopularSong } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
-interface YearProps {
+type YearProps = {
   year: number;
   articles: Article[];
-  popularSongs: Array<{
-    song_id: number;
-    song_name: string;
-    artist_name: string;
-    articles_cnt: number;
-  }>
+  popularSongs: PopularSong[];
 }
 
 const Year = ({ year, articles, popularSongs }: YearProps) => {

@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from "@fortawesome/free-brands-svg-icons";
 import styles from "./TwitterShareLink.module.css";
 
-interface TwitterShareLinkProps {
+type TwitterShareLinkProps = {
   text: string; 
   url: string;
   hashtags: string[];

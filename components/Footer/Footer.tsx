@@ -1,7 +1,7 @@
 import { TwitterShareLink } from "@/components";
 import styles from "./Footer.module.css";
 
-interface FooterProps {
+type FooterProps = {
   twitterShareText: string;
   twitterShareUrl: string;
 }

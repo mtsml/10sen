@@ -2,7 +2,7 @@ import { useState } from "react";
 import ContentLoader from "react-content-loader";
 import styles from "./YouTube.module.css";
 
-interface YouTubeProps {
+type YouTubeProps = {
   videoId: string;
 }
 
@@ -19,7 +19,7 @@ const YouTube = ({ videoId }: YouTubeProps) => {
             width="100%"
             height="315px"
             style={{ maxWidth: "560px" }}
-            foregroundColor="#e7e7e7"
+            foregroundColor="#e9e9e9"
             title="YouTube動画を読み込んでいます。"
           >
             <rect x="0" y="0" rx="0" ry="0" width="100%" height="100%" />

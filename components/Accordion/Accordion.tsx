@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMinus } from "@fortawesome/free-solid-svg-icons";
 import styles from "./Accordion.module.css";
 
-interface AccordionProps {
+type AccordionProps = {
   header: ReactNode;
   children: ReactNode;
 }

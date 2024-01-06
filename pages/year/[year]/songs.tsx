@@ -2,16 +2,12 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { Footer, SongList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
+import type { Song } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
-interface SongsProps {
+type SongsProps = {
   year: number;
-  songs: Array<{
-    song_id: number;
-    song_name: string;
-    artist_name: string;
-    articles_cnt: number;
-  }>
+  songs: Song[];
 }
 
 const Songs = ({ year, songs }: SongsProps) => {

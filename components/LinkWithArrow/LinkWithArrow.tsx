@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import styles from "./LinkWithArrow.module.css";
 
-interface LinkWithArrowProps {
+type LinkWithArrowProps = {
   href: string;
   text: string;
 }
