@@ -1,32 +1,14 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
-import ArticleList from "@/components/ArticleList";
-import SongList from "@/components/SongList";
-import Tweet from "@/components/Tweet";
-import TwitterShareLink from "@/components/TwitterShareLink";
-import ArticleAPI from "@/lib/ArticleAPI";
+import { ArticleList, ExternalLinkIcon, Footer, SongList, Tweet } from "@/components";
+import { ArticleAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
+import type { Article, RelatedArticle } from "@/types";
+import styles from "./article.module.css";
 
-interface ArticleProps {
-  id: number;
-  url: string;
-  name: string;
+type ArticleProps = Article & Required<Pick<Article, "songs">> & {
   tweetUrl: string | null;
-  songs: Array<{
-    song_id: number,
-    song_name: string,
-    artist_id: number,
-    artist_name: string
-  }>;
-  relatedArticles: Array<{
-    id: number;
-    url: string;
-    name: string;
-    songs_cnt: number;
-    songs_name: string;
-  }>;
+  relatedArticles: RelatedArticle[];
 }
 
 const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticleProps) => {
@@ -39,21 +21,18 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}article/${id}`} />
       </Head>
-      <h2 className="article-h2">
+      <h2>
         <span>{name}</span>
       </h2>
       <div className="container">
-        <p className="mb-1">
+        <p className={styles.p}>
           <a
             className="pure-menu-link"
             href={url}
             target="_blank"
           >
             <span>記事を見る</span>
-            <FontAwesomeIcon
-              className="external-link-icon"
-              icon={faUpRightFromSquare}
-            />
+            <ExternalLinkIcon paddingLeft />
           </a>
         </p>
         {tweetUrl
@@ -75,13 +54,10 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
           : <ArticleList articles={relatedArticles} />
         }
       </div>
-      <div className="container flex-center mb-1">
-        <TwitterShareLink
-          text={`「${name}」とその関連記事を見てみよう。`}
-          url={`${SERVICE_URL}article/${id}`}
-          hashtags={["楽曲10選まとめ"]}
-        />
-      </div>
+      <Footer
+        twitterShareText={`「${name}」とその関連記事を見てみよう。`}
+        twitterShareUrl={`${SERVICE_URL}article/${id}`}
+      />
     </>
   );
 }

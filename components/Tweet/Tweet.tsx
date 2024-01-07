@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import ContentLoader from "react-content-loader";
+import styles from "./Tweet.module.css";
 
-interface TweetProps {
+type TweetProps = {
   url: string;
 }
 
@@ -35,7 +36,7 @@ const Tweet = ({ url }: TweetProps) => {
   }, []);
 
   return (
-    <div className="mb-1">
+    <div className={styles.tweet}>
       {isLoading &&
         <div className="content-loader-wrapper">
           <ContentLoader
@@ -44,6 +45,8 @@ const Tweet = ({ url }: TweetProps) => {
             width="100%"
             height="600px"
             style={{ maxWidth: "550px" }}
+            backgroundColor="#e9e9e9"
+            foregroundColor="#eeeeee"
             title="Xポストを読み込み中です。"
           >
             <circle cx="40" cy="35" r="27" />

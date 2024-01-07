@@ -3,6 +3,7 @@ import Script from "next/script";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import "@/styles/globals.css";
+import "@/styles/overridepurecss.css";
 import Layout from "@/components/Layout";
 
 // FontAwesome Settings

@@ -1,22 +1,15 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import ArticleList from "@/components/ArticleList";
-import TwitterShareLink from "@/components/TwitterShareLink";
-import YouTube from "@/components/YouTube";
-import ArticleAPI from "@/lib/ArticleAPI";
-import SongAPI from "@/lib/SongAPI";
-import Article from "@/types/article";
+import { ArticleList, Footer, YouTube } from "@/components";
+import { ArticleAPI, SongAPI } from "@/lib";
+import type { Article, Song } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
-interface SongProps {
-  id: number;
-  song_name: string;
-  artist_name: string;
-  video_id: string | null;
-  articles: Array<Article>;
+type SongProps = Song & {
+  articles: Article[];
 }
 
-const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => {
+const Song = ({ song_id, song_name, artist_name, video_id, articles }: SongProps) => {
   const title = `${song_name} / ${artist_name} - ${SERVICE_NAME}`;
 
   return (
@@ -24,7 +17,7 @@ const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => 
       <Head>
         <title>{title}</title>
         <meta name="og:title" content={title} />
-        <meta name="og:url" content={`${SERVICE_URL}song/${id}`} />
+        <meta name="og:url" content={`${SERVICE_URL}song/${song_id}`} />
       </Head>
       <h2>{song_name} / {artist_name}</h2>
       <div className="container">
@@ -37,13 +30,10 @@ const Song = ({ id, song_name, artist_name, video_id, articles }: SongProps) => 
       <div className="container">
         <ArticleList articles={articles} />
       </div>
-      <div className="container flex-center mb-1">
-        <TwitterShareLink
-          text={`${artist_name}の${song_name}を紹介している${articles.length}件の記事があります。`}
-          url={`${SERVICE_URL}song/${id}`}
-          hashtags={["楽曲10選まとめ"]}
-        />
-      </div>
+      <Footer
+        twitterShareText={`${artist_name}の${song_name}を紹介している${articles.length}件の記事があります。`}
+        twitterShareUrl={`${SERVICE_URL}song/${song_id}`}
+      />
     </>
   );
 }
@@ -54,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths = songs.map(song => {
     return {
       params: {
-        id: String(song.id)
+        id: String(song.song_id)
       }
     }
   });
@@ -66,17 +56,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const id = context.params && context.params.id;
+  const song_id = context.params && context.params.id;
 
   const result = await Promise.all([
-    SongAPI.fetchSong(Number(id)),
-    ArticleAPI.fetchArticlesBySong(Number(id))
+    SongAPI.fetchSong(Number(song_id)),
+    ArticleAPI.fetchArticlesBySong(Number(song_id))
   ]);
   const [{ song_name, artist_name, video_id }, articles] = result;
 
   return {
     props: {
-      id,
+      song_id,
       song_name,
       artist_name,
       video_id,

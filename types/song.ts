@@ -1,7 +1,11 @@
-import Artist from "@/types/artist";
+export type Song = {
+  song_id: number;
+  song_name: string;
+  artist_name: string;
+  video_id?: string;
+}
 
-export default interface Song {
-  id: number;
-  name: string;
-  artist: Artist;
+export type PopularSong = Song & {
+  articles_cnt: number;
+  rank: number;
 }

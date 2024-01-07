@@ -1,14 +1,13 @@
 import Link from "next/link";
-import ExternalLinkIcon from "@/components/ExternalLinkIcon";
-import Article from "@/types/article";
+import { ExternalLinkIcon } from "@/components";
+import type { Article, RelatedArticle } from "@/types";
 
-interface ArticleWithRelatedSongs extends Article {
-  songs_cnt?: number;
-  songs_name?: string;
+const isRelatedArticle = (article: Article | RelatedArticle): article is RelatedArticle => {
+  return "songs_name" in article;
 }
 
-interface ArticleListProps {
-  articles: ArticleWithRelatedSongs[];
+type ArticleListProps = {
+  articles: Article[] | RelatedArticle[];
 }
 
 const ArticleList = ({ articles }: ArticleListProps) => {
@@ -17,19 +16,20 @@ const ArticleList = ({ articles }: ArticleListProps) => {
       {articles.map(article => (
         <li
           key={article.id}
-          className="pure-menu-item flex-space-between"
+          className="pure-menu-item"
         >
           <Link
             className="pure-menu-link"
             href={`/article/${encodeURIComponent(article.id)}`}
           >
-            {article.songs_name
+            {isRelatedArticle(article)
               ? <>{article.name}<br/><small>( {article.songs_name} )</small></>
               : article.name
             }
           </Link>
           <ExternalLinkIcon
             href={article.url}
+            paddingLeft
           />
         </li>
       ))}

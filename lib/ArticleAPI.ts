@@ -1,4 +1,5 @@
-import { sql, db } from "@vercel/postgres";
+import { sql } from "@vercel/postgres";
+import type { Article, RelatedArticle } from "@/types";
 
 const fetchYears = async (): Promise<number[]> => {
   const result = await sql`
@@ -8,17 +9,12 @@ const fetchYears = async (): Promise<number[]> => {
       article
     ORDER BY
       year DESC
-    ;
   `;
+
   return result.rows.map(row => row.year);
 }
 
-interface fetchArticlesRes {
-  id: number;
-  url: string;
-  name: string;
-}
-const fetchArticles = async (): Promise<fetchArticlesRes[]> => {
+const fetchArticles = async (): Promise<Article[]> => {
   const result = await sql`
     SELECT
       id,
@@ -37,7 +33,7 @@ const fetchArticles = async (): Promise<fetchArticlesRes[]> => {
   }));
 }
 
-const fetchArticlesByYear = async (year: number): Promise<fetchArticlesRes[]> => {
+const fetchArticlesByYear = async (year: number): Promise<Article[]> => {
   const result = await sql`
     SELECT
       id,
@@ -58,53 +54,40 @@ const fetchArticlesByYear = async (year: number): Promise<fetchArticlesRes[]> =>
   }));
 }
 
-const fetchArticlesBySong = async (song_id: number): Promise<fetchArticlesRes[]> => {
-const result = await sql`
-  SELECT
-    id,
-    url,
-    name
-  FROM
-    article
-  WHERE
-    EXISTS (
-      SELECT
-        1
-      FROM
-        article_song_map
-      WHERE
-        article_song_map.article_id = article.id
-        AND article_song_map.song_id = ${song_id}
-    )
-  ORDER BY
-    id DESC
-`;
+const fetchArticlesBySong = async (song_id: number): Promise<Article[]> => {
+  const result = await sql`
+    SELECT
+      id,
+      url,
+      name
+    FROM
+      article
+    WHERE
+      EXISTS (
+        SELECT
+          1
+        FROM
+          article_song_map
+        WHERE
+          article_song_map.article_id = article.id
+          AND article_song_map.song_id = ${song_id}
+      )
+    ORDER BY
+      id DESC
+  `;
 
-return result.rows.map(row => ({
-  id: row.id,
-  url: row.url,
-  name: row.name
-}));
+  return result.rows.map(row => ({
+    id: row.id,
+    url: row.url,
+    name: row.name
+  }));
 }
 
-interface fetchArticleRes {
-  url: string;
-  name: string;
+type fetchArticleRes = Omit<Article, "id"> & {
   tweetUrl: string;
-  songs: Array<{
-    song_id: number,
-    song_name: string,
-    artist_id: number,
-    artist_name: string
-  }>;
-  relatedArticles: Array<{
-    id: number;
-    url: string;
-    name: string;
-    songs_cnt: number;
-    songs_name: string;
-  }>;
+  relatedArticles: RelatedArticle[];
 }
+
 const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
   const articleQuery = sql`
     SELECT
@@ -115,14 +98,12 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
       article
     WHERE
       id = ${id}
-    ;
   `;
 
   const songQuery = sql`
     SELECT
       song.id AS song_id,
       song.name AS song_name,
-      artist.id AS artist_id,
       artist.name AS artist_name
     FROM
       article_song_map
@@ -174,14 +155,12 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
     songs: songResult.rows.map(row => ({
       song_id: row.song_id,
       song_name: row.song_name,
-      artist_id: row.artist_id,
       artist_name: row.artist_name
     })),
     relatedArticles: relatedArticlesResult.rows.map(row => ({
       id: row.id,
       url: row.url,
       name: row.name,
-      songs_cnt: row.songs_cnt,
       songs_name: row.songs_name
     }))
   }
