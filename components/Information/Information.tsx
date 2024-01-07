@@ -1,12 +1,13 @@
 import { ReactNode } from "react";
+import styles from "./Information.module.css";
 
-interface InformationProps {
+type InformationProps = {
   children: ReactNode;
 }
 
 const Information = ({ children }: InformationProps) => {
   return (
-    <div className="information">
+    <div className={styles.information}>
       {children}
     </div>
   );

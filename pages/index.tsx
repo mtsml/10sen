@@ -1,13 +1,10 @@
 import { GetStaticProps } from "next";
-import Link from "next/link";
 import Head from "next/head";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import TwitterShareLink from "@/components/TwitterShareLink";
-import ArticleAPI from "@/lib/ArticleAPI";
+import { Footer, LinkWithArrow } from "@/components";
+import { ArticleAPI } from "@/lib";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
-interface HomeProps {
+type HomeProps = {
   years: number[];
 }
 
@@ -27,25 +24,20 @@ const Home = ({ years }: HomeProps) => {
           {years.map(year => (
             <li
               key={year}
-              className="pure-menu-item flex-space-between"
+              className="pure-menu-item"
             >
-              <Link
-                className="pure-menu-link"
+              <LinkWithArrow
                 href={`/year/${encodeURIComponent(year)}`}
-              >
-                {year}年の記事を見る<FontAwesomeIcon className="icon -inline" icon={faArrowRight} />
-              </Link>
+                text={`${year}年の記事を見る`}
+              />
             </li>
           ))}
         </ul>
       </div>
-      <div className="container flex-center mb-1">
-        <TwitterShareLink
-          text={"楽曲10選がまとめられています。"}
-          url={SERVICE_URL}
-          hashtags={["楽曲10選まとめ"]}
-        />
-      </div>
+      <Footer
+        twitterShareText="楽曲10選がまとめられています。"
+        twitterShareUrl={SERVICE_URL}
+      />
     </>
   );
 }
