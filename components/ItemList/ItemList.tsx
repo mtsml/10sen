@@ -1,21 +1,27 @@
 import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link, { LinkProps } from "next/link";
 import { useRouter } from 'next/router'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleXmark, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
-import type { Song, PopularSong } from "@/types";
-import styles from "./SongList.module.css";
+import styles from "./ItemList.module.css";
+import { UrlObject } from "url";
 
-const isPopularSong = (song: Song | PopularSong): song is PopularSong => {
-  return "articles_cnt" in song;
+type Item = {
+  id: number;
+  name: string;
+  articles_cnt?: number;
+  rank?: number;
 }
 
-type SongListProps = {
-  songs: Song[] | PopularSong[];
+type Url = string | UrlObject;
+
+type ItemListProps = {
+  items: Item[];
+  makeHref: (item: Item) => Url;
   search?: boolean;
 }
 
-const SongList = ({ songs, search = false }: SongListProps) => {
+const ItemList = ({ items, makeHref, search = false }: ItemListProps) => {
   const [ keyWord, setKeyWord ] = useState("");
   const router = useRouter();
 
@@ -40,14 +46,10 @@ const SongList = ({ songs, search = false }: SongListProps) => {
   }
 
   /**
-   * song_nameまたはartist_nameが一致しているかを大文字・小文字を区別せずに検証する
+   * item.nameがkeyWordと一致しているかを大文字・小文字を区別せずに検証する
    */
-  const isMatchKeyWord = (song: Song, keyWord: string) => {
-    if (!keyWord) return true;
-    return (
-      song.song_name.toLowerCase().includes(keyWord.toLowerCase())
-      || song.artist_name.toLowerCase().includes(keyWord.toLowerCase())
-    );
+  const isMatchKeyWord = (item: Item, keyWord: string) => {
+    return !keyWord || item.name.toLowerCase().includes(keyWord.toLowerCase());
   }
 
   return (
@@ -79,22 +81,22 @@ const SongList = ({ songs, search = false }: SongListProps) => {
           </div>
       }
       <ul className="pure-menu">
-        {songs.filter((song) => isMatchKeyWord(song, keyWord)).map(song => (
+        {items.filter((item) => isMatchKeyWord(item, keyWord)).map(item => (
           <li
-            key={song.song_id}
+            key={item.id}
             className="pure-menu-item"
           >
             <Link
               className="pure-menu-link"
-              href={`/song/${encodeURIComponent(song.song_id)}`}
+              href={makeHref(item)}
               onClick={() => setQueryParam(keyWord)}
             >
-              {song.song_name} / {song.artist_name}
+              {item.name}
             </Link>
-            {isPopularSong(song) &&
-              <div className={`${styles["article-cnt"]} ${styles[`-rank${song.rank}`]}`}>
-                <span>{song.articles_cnt}</span>
-                <span className={styles.suffix}>{Number(song.articles_cnt) === 1 ? "Post" : "Posts"}</span>
+            {item.articles_cnt &&
+              <div className={`${styles["article-cnt"]} ${styles[`-rank${item.rank}`]}`}>
+                <span>{item.articles_cnt}</span>
+                <span className={styles.suffix}>{Number(item.articles_cnt) === 1 ? "Post" : "Posts"}</span>
               </div>
             }
           </li>
@@ -104,4 +106,4 @@ const SongList = ({ songs, search = false }: SongListProps) => {
   );
 }
 
-export default SongList;
+export default ItemList;

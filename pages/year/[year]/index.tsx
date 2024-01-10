@@ -1,9 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, SongList } from "@/components";
+import { ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Article, PopularArtist, PopularSong } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
+import { songToItem, artistToItem } from "@/util/utility";
 
 type YearProps = {
   year: number;
@@ -24,7 +25,10 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
       </Head>
       <h2>{year}年の人気曲</h2>
       <div className="container">
-        <SongList songs={popularSongs} />
+        <ItemList
+          items={popularSongs.map(songToItem)}
+          makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
+        />
         <p>
           <LinkWithArrow
             href={`/year/${encodeURIComponent(year)}/songs`}
@@ -34,8 +38,15 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
       </div>
       <h2>{year}年の人気歌手</h2>
       <div className="container">
-        {/* <SongList songs={popularSongs} /> */}
-        {popluarArtists.map(artist => artist.artist_name)}
+        <ItemList
+          items={popluarArtists.map(artistToItem)}
+          makeHref={(item) => ({
+            pathname: `/year/${year}/songs`,
+            query: {
+              keyword: item.name
+            }
+          })}
+        />
         <p>
           <LinkWithArrow
             href={`/year/${encodeURIComponent(year)}/artists`}

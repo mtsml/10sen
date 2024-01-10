@@ -1,9 +1,10 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { ArticleList, ExternalLinkIcon, Footer, SongList, Tweet } from "@/components";
+import { ArticleList, ExternalLinkIcon, Footer, ItemList, Tweet } from "@/components";
 import { ArticleAPI } from "@/lib";
-import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 import type { Article, RelatedArticle } from "@/types";
+import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
+import { songToItem } from "@/util/utility";
 import styles from "./article.module.css";
 
 type ArticleProps = Article & Required<Pick<Article, "songs">> & {
@@ -45,7 +46,10 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
       </div>
       <h3>紹介されている曲</h3>
       <div className="container">
-        <SongList songs={songs} />
+        <ItemList
+          items={songs.map(songToItem)}
+          makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
+        />
       </div>
       <h3>同じ曲を紹介している記事</h3>
       <div className="container">

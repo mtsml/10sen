@@ -2,36 +2,40 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
 import { Footer, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
-import type { Song } from "@/types";
+import type { Artist } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
-import { songToItem } from "@/util/utility";
+import { artistToItem } from "@/util/utility";
 
-type SongsProps = {
+type ArtistsProps = {
   year: number;
-  songs: Song[];
+  artists: Artist[];
 }
 
-const Songs = ({ year, songs }: SongsProps) => {
-  const title = `${year}年に紹介された曲 - ${SERVICE_NAME}`;
+const Artists = ({ year, artists }: ArtistsProps) => {
+  const title = `${year}年に紹介された歌手 - ${SERVICE_NAME}`;
 
   return (
     <>
       <Head>
         <title>{title}</title>
         <meta name="og:title" content={title} />
-        <meta name="og:url" content={`${SERVICE_URL}year/${year}/songs`} />
+        <meta name="og:url" content={`${SERVICE_URL}year/${year}/artists`} />
       </Head>
-      <h2>{year}年に紹介された曲</h2>
+      <h2>{year}年に紹介された歌手</h2>
       <div className="container">
         <ItemList
-          items={songs.map(songToItem)}
-          makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
-          search
+          items={artists.map(artistToItem)}
+          makeHref={(item) => ({
+            pathname: `/year/${year}/songs`,
+            query: {
+              keyword: item.name
+            }
+          })}
         />
       </div>
       <Footer
-        twitterShareText={`${year}年の楽曲10選記事では${songs.length}曲が紹介されています。`}
-        twitterShareUrl={`${SERVICE_URL}year/${year}/songs`}
+        twitterShareText={`${year}年の楽曲10選記事では${artists.length}人の歌手が紹介されています。`}
+        twitterShareUrl={`${SERVICE_URL}year/${year}/artists`}
       />
     </>
   );
@@ -57,14 +61,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (context) => {
   const year = context.params && context.params.year;
 
-  const songs = await SongAPI.fetchPopularSongsByYear(Number(year), 999);
+  const artists = await SongAPI.fetchPopularArtistsByYear(Number(year), 999);
 
   return {
     props: {
       year,
-      songs
+      artists
     }
   }
 }
 
-export default Songs;
+export default Artists;
