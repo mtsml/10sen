@@ -34,3 +34,14 @@ export const WithArticlesCnt: Story = {
     ]
   }
 };
+
+export const Search: Story = {
+  args: {
+    songs: [
+      { song_id: 1, song_name: "楽曲タイトル1", artist_name: "歌手名A" },
+      { song_id: 1, song_name: "楽曲タイトル2", artist_name: "歌手名B" },
+      { song_id: 1, song_name: "楽曲タイトル3", artist_name: "歌手名C" }
+    ],
+    search: true
+  }
+};
