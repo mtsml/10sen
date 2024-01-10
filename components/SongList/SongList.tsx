@@ -54,12 +54,15 @@ const SongList = ({ songs, search = false }: SongListProps) => {
     <>
       {search
         && <div className={styles.search}>
-            <label>
+            <label
+              htmlFor="song-search"
+            >
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
               />
             </label>
             <input
+              id="song-search"
               type="text"
               value={keyWord}
               placeholder="曲名または歌手名を入力してください"

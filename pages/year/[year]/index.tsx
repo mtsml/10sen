@@ -21,16 +21,6 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
-      <h2>{year}年の記事</h2>
-      <div className="container">
-        <Information>
-          <ExternalLinkIcon paddingRight />
-          <span>
-            をクリックすると記事（外部サイト）を開きます。
-          </span>
-        </Information>
-        <ArticleList articles={articles} />
-      </div>
       <h2>{year}年の人気曲</h2>
       <div className="container">
         <SongList songs={popularSongs} />
@@ -40,6 +30,16 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
             text={`${year}年に紹介されたすべての曲を見る`}
           />
         </p>
+      </div>
+      <h2>{year}年の記事</h2>
+      <div className="container">
+        <Information>
+          <ExternalLinkIcon paddingRight />
+          <span>
+            をクリックすると記事（外部サイト）を開きます。
+          </span>
+        </Information>
+        <ArticleList articles={articles} />
       </div>
       <Footer
         twitterShareText={`${year}年の楽曲10選を紹介している${articles.length}件の記事があります。`}
