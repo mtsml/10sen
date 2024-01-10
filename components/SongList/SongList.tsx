@@ -1,7 +1,7 @@
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faCircleXmark, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import type { Song, PopularSong } from "@/types";
 import styles from "./SongList.module.css";
 
@@ -15,21 +15,20 @@ type SongListProps = {
 }
 
 const SongList = ({ songs, search = false }: SongListProps) => {
-  const [ filteredSongs, setFilteredSongs ] = useState(songs);
+  const [ keyWord, setKeyWord ] = useState("");
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const keyWord = e.target.value;
-    if (keyWord) {
-      setFilteredSongs(songs.filter(song => song.song_name.includes(keyWord)));
-    } else {
-      setFilteredSongs(songs);
-    }
+  const filterSongs = (song: Song) => {
+    if (!keyWord) return true;
+    return (
+      song.song_name.toLowerCase().includes(keyWord.toLowerCase())
+      || song.artist_name.toLowerCase().includes(keyWord.toLowerCase())
+    );
   }
 
   return (
     <>
       {search
-        && <div className="pure-form">
+        && <div className={styles.search}>
             <label>
               <FontAwesomeIcon
                 icon={faMagnifyingGlass}
@@ -37,13 +36,22 @@ const SongList = ({ songs, search = false }: SongListProps) => {
             </label>
             <input
               type="text"
-              className="pure-input-rounded"
-              onChange={handleChange}
+              value={keyWord}
+              placeholder="曲名または歌手名を入力してください"
+              onChange={(e) => setKeyWord(e.target.value)}
             />
+            {keyWord
+              && <FontAwesomeIcon
+                  className={styles["xmark-icon"]}
+                  icon={faCircleXmark}
+                  size="lg"
+                  onClick={() => setKeyWord("")}
+                />
+            }
           </div>
       }
       <ul className="pure-menu">
-        {filteredSongs.map(song => (
+        {songs.filter(filterSongs).map(song => (
           <li
             key={song.song_id}
             className="pure-menu-item"
