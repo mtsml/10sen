@@ -1,5 +1,5 @@
 import { sql } from "@vercel/postgres";
-import type { Song, PopularSong } from "@/types";
+import type { Song, PopularArtist, PopularSong } from "@/types";
 
 const fetchSongs = async (): Promise<Song[]> => {
   const { rows } = await sql`
@@ -65,6 +65,46 @@ const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise
   }));
 }
 
+const fetchPopularArtistsByYear = async (year: number, limit: number = 3): Promise<PopularArtist[]> => {
+  const { rows } = await sql`
+    SELECT
+      artist.id AS artist_id,
+      artist.name AS artist_name,
+      artist_agg.articles_cnt,
+      artist_agg.rank
+    FROM (
+      SELECT
+        song.artist_id,
+        COUNT(DISTINCT article_id) AS articles_cnt,
+        DENSE_RANK() OVER(ORDER BY COUNT(DISTINCT article.id) DESC, COUNT(article.id) DESC) AS rank
+      FROM
+        article_song_map
+        INNER JOIN song
+          ON article_song_map.song_id = song.id
+        INNER JOIN article
+          ON article_song_map.article_id = article.id
+      WHERE
+        year = ${year}
+      GROUP BY
+        song.artist_id
+    ) artist_agg
+      INNER JOIN artist
+        ON artist_agg.artist_id = artist.id
+    WHERE
+      rank <= ${limit}
+    ORDER BY
+      rank,
+      artist_name
+  `;
+
+  return rows.map(row => ({
+    artist_id: row.artist_id,
+    artist_name: row.artist_name,
+    articles_cnt: row.articles_cnt,
+    rank: row.rank
+  }));
+}
+
 const fetchSong = async (id: number): Promise<Omit<Song, "song_id">> => {
   const { rows } = await sql`
     SELECT
@@ -88,6 +128,7 @@ const fetchSong = async (id: number): Promise<Omit<Song, "song_id">> => {
 const SongAPI = {
   fetchSong,
   fetchSongs,
+  fetchPopularArtistsByYear,
   fetchPopularSongsByYear
 }
 
