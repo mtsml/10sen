@@ -22,7 +22,7 @@ const Songs = ({ year, songs }: SongsProps) => {
       </Head>
       <h2>{year}年に紹介された曲</h2>
       <div className="container">
-        <SongList songs={songs} />
+        <SongList songs={songs} search />
       </div>
       <Footer
         twitterShareText={`${year}年の楽曲10選記事では${songs.length}曲が紹介されています。`}
