@@ -42,6 +42,8 @@ const Artists = ({ year, artists }: ArtistsProps) => {
               keyword: item.name
             }
           })}
+          search
+          searchPlaceholder="歌手名を入力してください"
         />
       </div>
       <Footer

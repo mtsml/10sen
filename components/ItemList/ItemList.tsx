@@ -19,9 +19,10 @@ type ItemListProps = {
   items: Item[];
   makeHref: (item: Item) => Url;
   search?: boolean;
+  searchPlaceholder?: string;
 }
 
-const ItemList = ({ items, makeHref, search = false }: ItemListProps) => {
+const ItemList = ({ items, makeHref, search = false, searchPlaceholder }: ItemListProps) => {
   const [ keyWord, setKeyWord ] = useState("");
   const router = useRouter();
 
@@ -67,7 +68,7 @@ const ItemList = ({ items, makeHref, search = false }: ItemListProps) => {
               id="song-search"
               type="text"
               value={keyWord}
-              placeholder="曲名または歌手名を入力してください"
+              placeholder={searchPlaceholder}
               onChange={(e) => setKeyWord(e.target.value)}
             />
             {keyWord

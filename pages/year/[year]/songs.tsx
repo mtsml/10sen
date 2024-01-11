@@ -38,6 +38,7 @@ const Songs = ({ year, songs }: SongsProps) => {
           items={songs.map(songToItem)}
           makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
           search
+          searchPlaceholder="曲名または歌手名を入力してください"
         />
       </div>
       <Footer
