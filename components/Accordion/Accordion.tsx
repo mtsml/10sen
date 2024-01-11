@@ -6,9 +6,10 @@ import styles from "./Accordion.module.css";
 type AccordionProps = {
   header: ReactNode;
   children: ReactNode;
+  type?: "information" | "warning";
 }
 
-const Accordion = ({ header, children }: AccordionProps) => {
+const Accordion = ({ header, type = "information", children }: AccordionProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState("0px");
   const [isOpen, setIsOpen] = useState(false);
@@ -20,7 +21,7 @@ const Accordion = ({ header, children }: AccordionProps) => {
   }, [isOpen]);
 
   return (
-    <div className={styles.accordion}>
+    <div className={`${styles.accordion} ${styles[type]}`}>
       <div
         className={styles["accordion-header"]}
         onClick={() => setIsOpen(!isOpen)}
