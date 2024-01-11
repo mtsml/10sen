@@ -36,7 +36,7 @@
 .search > label {
   align-self: center;
   padding-right: 0.5em;
-  color: var(--color-gray-20);
+  color: var(--color-gray-30);
 }
 
 .search > input {
