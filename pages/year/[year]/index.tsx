@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, ItemList } from "@/components";
+import { Accordion, ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Article, PopularArtist, PopularSong } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
@@ -38,6 +38,12 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
       </div>
       <h2>{year}年の人気歌手</h2>
       <div className="container">
+        <Accordion
+          header="遷移先と集計方法"
+        >
+          <p>歌手名をクリックすると曲の一覧ページに遷移します。一覧ページは歌手名で曲を絞り込んだ状態で表示されます。</p>
+          <p>歌手名の横に表示されている Post(s) はその歌手を紹介している<b>記事数</b>です。一つの記事で同じ歌手の曲を複数紹介している場合でも1回とカウントします。</p>
+        </Accordion>
         <ItemList
           items={popluarArtists.map(artistToItem)}
           makeHref={(item) => ({

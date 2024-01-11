@@ -17,6 +17,10 @@
   cursor: pointer;
   display: flex;
   justify-content: space-between;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-underline-offset: 0.2em;
+  text-decoration-color: var(--color-gray-30);
 }
 
 .accordion-body {
