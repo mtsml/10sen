@@ -1,9 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { Footer, SongList } from "@/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
+import { Footer, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Song } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
+import { songToItem } from "@/util/utility";
+import styles from "./index.module.css";
 
 type SongsProps = {
   year: number;
@@ -20,9 +24,22 @@ const Songs = ({ year, songs }: SongsProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}year/${year}/songs`} />
       </Head>
-      <h2>{year}年に紹介された曲</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faMusic}
+        />
+        <span>
+          {year}年に紹介された曲
+        </span>
+      </h2>
       <div className="container">
-        <SongList songs={songs} search />
+        <ItemList
+          items={songs.map(songToItem)}
+          makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
+          search
+          searchPlaceholder="曲名または歌手名を入力してください"
+        />
       </div>
       <Footer
         twitterShareText={`${year}年の楽曲10選記事では${songs.length}曲が紹介されています。`}

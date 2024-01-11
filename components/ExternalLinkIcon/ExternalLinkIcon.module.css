@@ -1,6 +1,6 @@
 .external-link-icon {
   padding: 0;
-  color: #767676;
+  color: var(--color-gray-30);
   align-self: center;
 }
 

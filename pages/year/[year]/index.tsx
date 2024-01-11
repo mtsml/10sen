@@ -1,17 +1,22 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
-import { ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, SongList } from "@/components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone, faMusic, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { Accordion, ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
-import type { Article, PopularSong } from "@/types";
+import type { Article, PopularArtist, PopularSong } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
+import { songToItem, artistToItem } from "@/util/utility";
+import styles from "./index.module.css";
 
 type YearProps = {
   year: number;
   articles: Article[];
+  popluarArtists: PopularArtist[];
   popularSongs: PopularSong[];
 }
 
-const Year = ({ year, articles, popularSongs }: YearProps) => {
+const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
   const title = `${year}年 - ${SERVICE_NAME}`;
 
   return (
@@ -21,9 +26,20 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
-      <h2>{year}年の人気曲</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faMusic}
+        />
+        <span>
+          {year}年の人気曲
+        </span>
+      </h2>
       <div className="container">
-        <SongList songs={popularSongs} />
+        <ItemList
+          items={popularSongs.map(songToItem)}
+          makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
+        />
         <p>
           <LinkWithArrow
             href={`/year/${encodeURIComponent(year)}/songs`}
@@ -31,7 +47,47 @@ const Year = ({ year, articles, popularSongs }: YearProps) => {
           />
         </p>
       </div>
-      <h2>{year}年の記事</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faMicrophone}
+        />
+        <span>
+          {year}年の人気歌手
+        </span>
+      </h2>
+      <div className="container">
+        <Accordion
+          header="遷移先と集計方法"
+        >
+          <p>歌手名をクリックすると曲の一覧ページに遷移します。一覧ページは歌手名で曲を絞り込んだ状態で表示されます。</p>
+          <p>歌手名の横に表示されている Post(s) はその歌手を紹介している<b>記事数</b>です。一つの記事で同じ歌手の曲を複数紹介している場合でも1回とカウントします。</p>
+        </Accordion>
+        <ItemList
+          items={popluarArtists.map(artistToItem)}
+          makeHref={(item) => ({
+            pathname: `/year/${year}/songs`,
+            query: {
+              keyword: item.name
+            }
+          })}
+        />
+        <p>
+          <LinkWithArrow
+            href={`/year/${encodeURIComponent(year)}/artists`}
+            text={`${year}年に紹介されたすべての歌手を見る`}
+          />
+        </p>
+      </div>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faPenToSquare}
+        />
+        <span>
+          {year}年の記事一覧
+        </span>
+      </h2>
       <div className="container">
         <Information>
           <ExternalLinkIcon paddingRight />
@@ -71,14 +127,16 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   const result = await Promise.all([
     ArticleAPI.fetchArticlesByYear(Number(year)),
+    SongAPI.fetchPopularArtistsByYear(Number(year)),
     SongAPI.fetchPopularSongsByYear(Number(year))
   ]);
-  const [ articles, popularSongs ] = result;
+  const [ articles, popluarArtists, popularSongs ] = result;
 
   return {
     props: {
       year,
       articles,
+      popluarArtists,
       popularSongs
     }
   }
