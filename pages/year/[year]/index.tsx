@@ -60,7 +60,7 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
           />
         </p>
       </div>
-      <h2>{year}年の記事</h2>
+      <h2>{year}年の記事一覧</h2>
       <div className="container">
         <Information>
           <ExternalLinkIcon paddingRight />
