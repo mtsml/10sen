@@ -38,7 +38,7 @@ const ItemList = ({ items, makeHref, search = false, searchPlaceholder }: ItemLi
   }, [router.isReady]);
 
   /**
-   * ブラウザバック時に絞り込み状態を保持するためにHitoryを書き換える
+   * ブラウザバック時に絞り込み状態を保持するためにHistoryを書き換える
    */
   const setQueryParam = (keyWord: string) => {
     const pathname = router.asPath.replace(/\?.+/, "");
