@@ -1,5 +1,4 @@
 .header {
-  background-color: rgb(61, 79, 93);
   font-weight: bold;
   display: flex;
   justify-content: center;
@@ -9,5 +8,5 @@
 .header a {
   font-size: 150%;
   text-decoration: none;
-  color: #ffffff;
+  color: #333333;
 }
