@@ -1,8 +1,8 @@
 import { GetStaticProps } from "next";
 import Head from "next/head";
-import { Footer, LinkWithArrow } from "@/components";
+import { Footer, Information, LinkWithArrow } from "@/components";
 import { ArticleAPI } from "@/lib";
-import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
+import { CONTACT_US_X_ID, CONTACT_US_X_LINK, SERVICE_NAME, SERVICE_URL } from "@/util/const";
 
 type HomeProps = {
   years: number[];
@@ -33,6 +33,21 @@ const Home = ({ years }: HomeProps) => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className="container">
+        <Information>
+          <p>
+            <span>記事の追加や削除のご要望、不具合や改善に関するご意見、その他のお問合わせは</span>
+            <a
+              className="pure-menu-link"
+              href={CONTACT_US_X_LINK}
+              target="_blank"
+            >
+              {CONTACT_US_X_ID}
+            </a>
+            <span>までご連絡ください。</span>
+          </p>
+        </Information>
       </div>
       <Footer
         twitterShareText="楽曲10選がまとめられています。"

@@ -1,0 +1,58 @@
+.article-cnt {
+  padding: 0 0 0 0.5em;
+  align-self: center;
+  white-space: nowrap;
+}
+
+.article-cnt.-rank1 {
+  color: #e3b72a;
+  font-weight: bold;
+}
+
+.article-cnt.-rank2 {
+  color: #989898;
+  font-weight: bold;
+}
+
+.article-cnt.-rank3 {
+  color: #b47950;
+  font-weight: bold;
+}
+
+.article-cnt > .suffix {
+  font-size: 0.5em;
+  padding-left: 0.2em
+}
+
+.search {
+  display: flex;
+  padding: 0 0.5em;
+  margin-bottom: 0.8em;
+  border: 1px solid var(--color-gray-10);
+  border-radius: 10px;
+  max-width: 600px;
+}
+
+.search > label {
+  align-self: center;
+  padding-right: 0.5em;
+  color: var(--color-gray-30);
+}
+
+.search > input {
+  border: none;
+  outline: 0;
+  height: 2.5em;
+  width: 100%;
+}
+
+.search > input::placeholder {
+  color: var(--color-gray-20);
+  font-size: 0.8em;
+}
+
+.search .xmark-icon {
+  cursor: pointer;
+  align-self: center;
+  color: var(--color-gray-20);
+}
