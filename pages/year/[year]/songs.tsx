@@ -1,10 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMusic } from "@fortawesome/free-solid-svg-icons";
 import { Footer, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Song } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 import { songToItem } from "@/util/utility";
+import styles from "./index.module.css";
 
 type SongsProps = {
   year: number;
@@ -21,7 +24,15 @@ const Songs = ({ year, songs }: SongsProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}year/${year}/songs`} />
       </Head>
-      <h2>{year}年に紹介された曲</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faMusic}
+        />
+        <span>
+          {year}年に紹介された曲
+        </span>
+      </h2>
       <div className="container">
         <ItemList
           items={songs.map(songToItem)}

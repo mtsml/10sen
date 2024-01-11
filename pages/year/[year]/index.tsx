@@ -1,10 +1,13 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import Head from "next/head";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMicrophone, faMusic, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { Accordion, ArticleList, ExternalLinkIcon, Footer, Information, LinkWithArrow, ItemList } from "@/components";
 import { ArticleAPI, SongAPI } from "@/lib";
 import type { Article, PopularArtist, PopularSong } from "@/types";
 import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 import { songToItem, artistToItem } from "@/util/utility";
+import styles from "./index.module.css";
 
 type YearProps = {
   year: number;
@@ -23,7 +26,15 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
-      <h2>{year}年の人気曲</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faMusic}
+        />
+        <span>
+          {year}年の人気曲
+        </span>
+      </h2>
       <div className="container">
         <ItemList
           items={popularSongs.map(songToItem)}
@@ -36,7 +47,15 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
           />
         </p>
       </div>
-      <h2>{year}年の人気歌手</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faMicrophone}
+        />
+        <span>
+          {year}年の人気歌手
+        </span>
+      </h2>
       <div className="container">
         <Accordion
           header="遷移先と集計方法"
@@ -60,7 +79,15 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
           />
         </p>
       </div>
-      <h2>{year}年の記事一覧</h2>
+      <h2>
+        <FontAwesomeIcon
+          className={styles.icon}
+          icon={faPenToSquare}
+        />
+        <span>
+          {year}年の記事一覧
+        </span>
+      </h2>
       <div className="container">
         <Information>
           <ExternalLinkIcon paddingRight />
