@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -35,7 +36,10 @@
     "@types/pg": "^8.10.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "chromatic": "^10.2.1",
     "storybook": "^7.6.7",
     "typescript": "^5"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "10sen@1.2.0"
 }
