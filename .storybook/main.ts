@@ -3,7 +3,7 @@ import type { StorybookConfig } from "@storybook/nextjs";
 
 const config: StorybookConfig = {
   stories: [
-    "../components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
+    "../src/components/**/*.stories.@(js|jsx|mjs|ts|tsx)"
   ],
   addons: [
     "@storybook/addon-links",
@@ -31,8 +31,8 @@ const config: StorybookConfig = {
     if (config.resolve) {
       config.resolve.alias = {
         ...config.resolve.alias,
-        "@/util": path.resolve(__dirname, "../util"),
-        "@/components": path.resolve(__dirname, "../components"),
+        "@/util": path.resolve(__dirname, "../src/util"),
+        "@/components": path.resolve(__dirname, "../src/components"),
       };
     }
     return config;
