@@ -1,0 +1,20 @@
+[
+  {
+    "song_id": 101,
+    "song_name": "Mock Song A",
+    "artist_name": "Mock Artist X",
+    "video_id": "videoA"
+  },
+  {
+    "song_id": 102,
+    "song_name": "Mock Song B",
+    "artist_name": "Mock Artist Y",
+    "video_id": "videoB"
+  },
+  {
+    "song_id": 103,
+    "song_name": "Mock Song C",
+    "artist_name": "Mock Artist Z",
+    "video_id": "videoC"
+  }
+]

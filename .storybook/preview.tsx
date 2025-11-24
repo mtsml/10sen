@@ -1,8 +1,8 @@
 import React from "react";
 import type { Preview } from "@storybook/react";
 import "@fortawesome/fontawesome-svg-core/styles.css";
-import "../styles/globals.css";
-import "../styles/overridepurecss.css";
+import "../src/styles/globals.css";
+import "../src/styles/overridepurecss.css";
 
 const preview: Preview = {
   parameters: {
