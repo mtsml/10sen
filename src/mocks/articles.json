@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "url": "https://example.com/article/1",
+    "name": "Sample Article 1 (2023)",
+    "year": 2023,
+    "songs": [
+      {
+        "song_id": 101,
+        "song_name": "Mock Song A",
+        "artist_name": "Mock Artist X"
+      },
+      {
+        "song_id": 102,
+        "song_name": "Mock Song B",
+        "artist_name": "Mock Artist Y"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "url": "https://example.com/article/2",
+    "name": "Sample Article 2 (2024)",
+    "year": 2024,
+    "songs": [
+      {
+        "song_id": 102,
+        "song_name": "Mock Song B",
+        "artist_name": "Mock Artist Y"
+      },
+      {
+        "song_id": 103,
+        "song_name": "Mock Song C",
+        "artist_name": "Mock Artist Z"
+      }
+    ]
+  }
+]
