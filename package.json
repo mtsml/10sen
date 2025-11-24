@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "dev:mock": "USE_MOCKS=true next dev",
     "build": "next build",
+    "build:mock": "USE_MOCKS=true next build",
     "start": "next start",
     "lint": "next lint",
     "storybook": "storybook dev -p 6006",
