@@ -26,37 +26,37 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
         <meta name="og:title" content={title} />
         <meta name="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
-      <h2>
-        <FontAwesomeIcon
-          className={styles.icon}
-          icon={faMusic}
-        />
-        <span>
-          {year}年の人気曲
-        </span>
-      </h2>
       <div className="container">
+        <h2 className={styles.title}>
+          <FontAwesomeIcon
+            className={styles.icon}
+            icon={faMusic}
+          />
+          <span>
+            {year}年の人気曲
+          </span>
+        </h2>
         <ItemList
           items={popularSongs.map(songToItem)}
           makeHref={(item) => `/song/${encodeURIComponent(item.id)}`}
         />
-        <p>
+        <div className={styles.linkWrapper}>
           <LinkWithArrow
             href={`/year/${encodeURIComponent(year)}/songs`}
             text={`${year}年に紹介されたすべての曲を見る`}
           />
-        </p>
+        </div>
       </div>
-      <h2>
-        <FontAwesomeIcon
-          className={styles.icon}
-          icon={faMicrophone}
-        />
-        <span>
-          {year}年の人気歌手
-        </span>
-      </h2>
       <div className="container">
+        <h2 className={styles.title}>
+          <FontAwesomeIcon
+            className={styles.icon}
+            icon={faMicrophone}
+          />
+          <span>
+            {year}年の人気歌手
+          </span>
+        </h2>
         <Accordion
           header="遷移先と集計方法"
         >
@@ -72,29 +72,31 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
             }
           })}
         />
-        <p>
+        <div className={styles.linkWrapper}>
           <LinkWithArrow
             href={`/year/${encodeURIComponent(year)}/artists`}
             text={`${year}年に紹介されたすべての歌手を見る`}
           />
-        </p>
+        </div>
       </div>
-      <h2>
-        <FontAwesomeIcon
-          className={styles.icon}
-          icon={faPenToSquare}
-        />
-        <span>
-          {year}年の記事一覧
-        </span>
-      </h2>
       <div className="container">
-        <Information>
-          <ExternalLinkIcon paddingRight />
+        <h2 className={styles.title}>
+          <FontAwesomeIcon
+            className={styles.icon}
+            icon={faPenToSquare}
+          />
           <span>
-            をクリックすると記事（外部サイト）を開きます。
+            {year}年の記事一覧
           </span>
-        </Information>
+        </h2>
+        <div className={styles.information}>
+          <Information>
+            <ExternalLinkIcon paddingRight />
+            <span>
+              をクリックすると記事（外部サイト）を開きます。
+            </span>
+          </Information>
+        </div>
         <ArticleList articles={articles} />
       </div>
       <Footer
