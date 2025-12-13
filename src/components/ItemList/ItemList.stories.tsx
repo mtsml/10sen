@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import ItemList from './ItemList';
 
 const meta = {
-  title: 'Components/SongList',
+  title: 'Components/ItemList',
   component: ItemList,
   parameters: {
     layout: 'fullscreen',
