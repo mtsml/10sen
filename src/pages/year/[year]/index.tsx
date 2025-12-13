@@ -23,8 +23,8 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
     <>
       <Head>
         <title>{title}</title>
-        <meta name="og:title" content={title} />
-        <meta name="og:url" content={`${SERVICE_URL}year/${year}`} />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
       <div className="container">
         <h2 className={styles.title}>

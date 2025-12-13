@@ -19,8 +19,8 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
     <>
       <Head>
         <title>{title}</title>
-        <meta name="og:title" content={title} />
-        <meta name="og:url" content={`${SERVICE_URL}article/${id}`} />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={`${SERVICE_URL}article/${id}`} />
       </Head>
       <h2>
         <span>{name}</span>

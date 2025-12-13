@@ -14,8 +14,8 @@ const Home = ({ years }: HomeProps) => {
     <>
       <Head>
         <title>{SERVICE_NAME}</title>
-        <meta name="og:title" content={SERVICE_NAME} />
-        <meta name="og:url" content={SERVICE_URL} />
+        <meta property="og:title" content={SERVICE_NAME} />
+        <meta property="og:url" content={SERVICE_URL} />
       </Head>
       <div className="container">
         <div className={styles.description}>
