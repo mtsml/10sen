@@ -16,8 +16,8 @@ const Song = ({ song_id, song_name, artist_name, video_id, articles }: SongProps
     <>
       <Head>
         <title>{title}</title>
-        <meta name="og:title" content={title} />
-        <meta name="og:url" content={`${SERVICE_URL}song/${song_id}`} />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={`${SERVICE_URL}song/${song_id}`} />
       </Head>
       <h2>{song_name} / {artist_name}</h2>
       <div className="container">

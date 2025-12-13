@@ -21,8 +21,8 @@ const Songs = ({ year, songs }: SongsProps) => {
     <>
       <Head>
         <title>{title}</title>
-        <meta name="og:title" content={title} />
-        <meta name="og:url" content={`${SERVICE_URL}year/${year}/songs`} />
+        <meta property="og:title" content={title} />
+        <meta property="og:url" content={`${SERVICE_URL}year/${year}/songs`} />
       </Head>
       <h2>
         <FontAwesomeIcon
