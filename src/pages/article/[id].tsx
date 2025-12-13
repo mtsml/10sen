@@ -44,7 +44,7 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
             />
         }
       </div>
-      <h3>紹介されている曲</h3>
+      <h3>紹介している曲</h3>
       <div className="container">
         <ItemList
           items={songs.map(songToItem)}
