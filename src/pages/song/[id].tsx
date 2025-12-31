@@ -39,7 +39,7 @@ const Song = ({ song_id, song_name, artist_name, video_id, articles }: SongProps
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const songs = await SongAPI.fetchSongs();
+  const songs = await SongAPI.fetchAllSongIds();
 
   const paths = songs.map(song => {
     return {

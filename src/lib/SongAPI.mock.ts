@@ -14,6 +14,12 @@ const fetchSongs = async (): Promise<Song[]> => {
   }));
 };
 
+const fetchAllSongIds = async (): Promise<Pick<Song, "song_id">[]> => {
+  return songsData.map(song => ({
+    song_id: song.song_id
+  }));
+};
+
 const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise<PopularSong[]> => {
   const songsInYear = new Map<number, number>(); // song_id -> count
 
@@ -105,6 +111,7 @@ const fetchArtists = async (): Promise<string[]> => {
 const SongAPI = {
   fetchSong,
   fetchSongs,
+  fetchAllSongIds,
   fetchPopularArtistsByYear,
   fetchPopularSongsByYear,
   fetchArticlesBySong,

@@ -22,6 +22,23 @@ const fetchSongs = async (): Promise<Song[]> => {
   }));
 }
 
+const fetchAllSongIds = async (): Promise<Pick<Song, "song_id">[]> => {
+  const { rows } = await sql`
+    SELECT
+      song.id AS song_id
+    FROM
+      song
+      INNER JOIN artist
+        ON song.artist_id = artist_id
+    ORDER BY
+      song_id
+  `;
+
+  return rows.map(row => ({
+    song_id: row.song_id,
+  }));
+}
+
 const fetchPopularSongsByYear = async (year: number, limit: number = 3): Promise<PopularSong[]> => {
   const { rows } = await sql`
     SELECT
@@ -128,6 +145,7 @@ const fetchSong = async (id: number): Promise<Omit<Song, "song_id">> => {
 const SongAPI = {
   fetchSong,
   fetchSongs,
+  fetchAllSongIds,
   fetchPopularArtistsByYear,
   fetchPopularSongsByYear
 }
