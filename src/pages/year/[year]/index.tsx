@@ -9,6 +9,8 @@ import { SERVICE_NAME, SERVICE_URL } from "@/util/const";
 import { songToItem, artistToItem } from "@/util/utility";
 import styles from "./index.module.css";
 
+const GOOGLE_FORM_URL = 'https://forms.gle/DBVF9h4u83HYEQgz8'
+
 type YearProps = {
   year: number;
   articles: Article[];
@@ -26,6 +28,20 @@ const Year = ({ year, articles, popluarArtists, popularSongs }: YearProps) => {
         <meta property="og:title" content={title} />
         <meta property="og:url" content={`${SERVICE_URL}year/${year}`} />
       </Head>
+      <div className="container">
+        <Information>
+          <a
+            className="pure-menu-link"
+            href={GOOGLE_FORM_URL}
+            target="_blank"
+            style={{ paddingLeft: 0 }}
+          >
+            <span>2025年楽曲10選記事投稿フォーム</span>
+            <ExternalLinkIcon paddingLeft />
+          </a>
+          <span>にて楽曲10選記事を探しています。ご要望やご感想もこちらからお願いします。</span>
+        </Information>
+      </div>
       <div className="container">
         <h2 className={styles.title}>
           <FontAwesomeIcon
