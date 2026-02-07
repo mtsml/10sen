@@ -9,8 +9,14 @@
     "build:mock": "USE_MOCKS=true next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "cf:prepare": "node scripts/generate-wrangler-config.mjs",
+    "cf:build": "npm run cf:prepare && opennextjs-cloudflare build --config .wrangler.deploy.toml",
+    "cf:preview": "npm run cf:prepare && opennextjs-cloudflare preview --config .wrangler.deploy.toml",
+    "cf:deploy": "npm run cf:prepare && opennextjs-cloudflare deploy --config .wrangler.deploy.toml",
+    "d1:local": "npm run cf:prepare && wrangler d1 execute DB --local --config .wrangler.deploy.toml",
+    "d1:schema:local": "npm run cf:prepare && wrangler d1 execute DB --local --file d1/schema.sql --config .wrangler.deploy.toml",
+    "d1:seed:export": "node scripts/export-neon-to-d1-seed.mjs",
+    "d1:seed:local": "npm run cf:prepare && wrangler d1 execute DB --local --file d1/seed.sql --config .wrangler.deploy.toml"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -18,26 +24,20 @@
     "@fortawesome/free-regular-svg-icons": "^6.5.1",
     "@fortawesome/free-solid-svg-icons": "^6.5.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
-    "@vercel/postgres": "^0.5.1",
-    "next": "^13.5.2",
-    "react": "^18",
+    "next": "^15.5.10",
+    "react": "^19.0.0",
     "react-content-loader": "^6.2.1",
-    "react-dom": "^18",
+    "react-dom": "^19.0.0",
     "react-select": "^5.8.0"
   },
   "devDependencies": {
-    "@storybook/addon-essentials": "^7.6.7",
-    "@storybook/addon-interactions": "^7.6.7",
-    "@storybook/addon-links": "^7.6.7",
-    "@storybook/blocks": "^7.6.7",
-    "@storybook/nextjs": "^7.6.7",
-    "@storybook/react": "^7.6.7",
-    "@storybook/test": "^7.6.7",
+    "@neondatabase/serverless": "^1.0.2",
+    "@opennextjs/cloudflare": "1.16.3",
     "@types/node": "^20",
     "@types/pg": "^8.10.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "storybook": "^7.6.7",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.51.1"
   }
 }
