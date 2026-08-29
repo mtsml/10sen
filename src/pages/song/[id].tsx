@@ -39,9 +39,10 @@ const Song = ({ song_id, song_name, artist_name, video_id, articles }: SongProps
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const songs = await SongAPI.fetchAllSongIds();
   return {
-    paths: [],
-    fallback: "blocking"
+    paths: songs.map(({ song_id }) => ({ params: { id: String(song_id) } })),
+    fallback: false
   }
 }
 
@@ -61,8 +62,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       artist_name,
       video_id,
       articles
-    },
-    revalidate: 60
+    }
   }
 }
 

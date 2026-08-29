@@ -50,9 +50,10 @@ const Songs = ({ year, songs }: SongsProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const years = await ArticleAPI.fetchYears();
   return {
-    paths: [],
-    fallback: "blocking"
+    paths: years.map((year) => ({ params: { year: String(year) } })),
+    fallback: false
   }
 }
 
@@ -65,8 +66,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       year,
       songs
-    },
-    revalidate: 60
+    }
   }
 }
 

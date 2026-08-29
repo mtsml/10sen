@@ -3,20 +3,13 @@
   "version": "1.3.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "USE_MOCKS=true next dev",
     "dev:mock": "USE_MOCKS=true next dev",
-    "build": "next build",
+    "build": "npm run cf:build",
     "build:mock": "USE_MOCKS=true next build",
-    "start": "next start",
     "lint": "next lint",
-    "cf:prepare": "node scripts/generate-wrangler-config.mjs",
-    "cf:build": "npm run cf:prepare && opennextjs-cloudflare build --config .wrangler.deploy.toml",
-    "cf:preview": "npm run cf:prepare && opennextjs-cloudflare preview --config .wrangler.deploy.toml",
-    "cf:deploy": "npm run cf:prepare && opennextjs-cloudflare deploy --config .wrangler.deploy.toml",
-    "d1:local": "npm run cf:prepare && wrangler d1 execute DB --local --config .wrangler.deploy.toml",
-    "d1:schema:local": "npm run cf:prepare && wrangler d1 execute DB --local --file d1/schema.sql --config .wrangler.deploy.toml",
-    "d1:seed:export": "node scripts/export-neon-to-d1-seed.mjs",
-    "d1:seed:local": "npm run cf:prepare && wrangler d1 execute DB --local --file d1/seed.sql --config .wrangler.deploy.toml"
+    "cf:data": "node scripts/export-d1-site-data.mjs",
+    "cf:build": "STATIC_EXPORT=true npm run cf:data && STATIC_EXPORT=true next build"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -31,13 +24,9 @@
     "react-select": "^5.8.0"
   },
   "devDependencies": {
-    "@neondatabase/serverless": "^1.0.2",
-    "@opennextjs/cloudflare": "1.16.3",
     "@types/node": "^20",
-    "@types/pg": "^8.10.9",
     "@types/react": "^18",
     "@types/react-dom": "^18",
-    "typescript": "^5",
-    "wrangler": "^4.51.1"
+    "typescript": "^5"
   }
 }

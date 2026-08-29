@@ -75,7 +75,7 @@ const fetchArticle = async (id: number): Promise<fetchArticleRes> => {
       song_id: s.song_id,
       song_name: s.song_name,
       artist_name: s.artist_name,
-      video_id: songsData.find(sd => sd.song_id === s.song_id)?.video_id
+      video_id: songsData.find(sd => sd.song_id === s.song_id)?.video_id ?? null
     })),
     relatedArticles: relatedArticles.sort((a,b) => b.songs_name.localeCompare(a.songs_name)) // Simple sort for consistency
   };
