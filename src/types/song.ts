@@ -2,7 +2,7 @@ export type Song = {
   song_id: number;
   song_name: string;
   artist_name: string;
-  video_id?: string;
+  video_id: string | null;
 }
 
 export type PopularSong = Song & {

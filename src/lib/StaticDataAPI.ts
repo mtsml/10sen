@@ -53,7 +53,7 @@ const toSong = (song: SongRow): Song => {
     song_id: song.id,
     song_name: song.name,
     artist_name: artist.name,
-    video_id: song.video_id ?? undefined,
+    video_id: song.video_id,
   };
 };
 
