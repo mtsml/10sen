@@ -1,4 +1,4 @@
-import { GetServerSideProps } from "next";
+import { GetStaticProps } from "next";
 import Head from "next/head";
 import { Footer, Information, LinkWithArrow } from "@/components";
 import { ArticleAPI } from "@/lib";
@@ -56,8 +56,7 @@ const Home = ({ years }: HomeProps) => {
   );
 }
 
-export const getServerSideProps: GetServerSideProps = async ({ res }) => {
-  res.setHeader("Cache-Control", "public, s-maxage=60, stale-while-revalidate=300");
+export const getStaticProps: GetStaticProps = async () => {
   const years = await ArticleAPI.fetchYears();
 
   return {

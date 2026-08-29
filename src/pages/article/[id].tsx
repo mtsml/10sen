@@ -67,9 +67,10 @@ const Article = ({ id, url, name, tweetUrl, songs, relatedArticles }: ArticlePro
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const articles = await ArticleAPI.fetchArticles();
   return {
-    paths: [],
-    fallback: "blocking"
+    paths: articles.map(({ id }) => ({ params: { id: String(id) } })),
+    fallback: false
   }
 }
 
@@ -86,8 +87,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       songs,
       relatedArticles,
       tweetUrl
-    },
-    revalidate: 60
+    }
   }
 }
 

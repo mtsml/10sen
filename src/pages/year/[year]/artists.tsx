@@ -61,9 +61,10 @@ const Artists = ({ year, artists }: ArtistsProps) => {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const years = await ArticleAPI.fetchYears();
   return {
-    paths: [],
-    fallback: "blocking"
+    paths: years.map((year) => ({ params: { year: String(year) } })),
+    fallback: false
   }
 }
 
@@ -76,8 +77,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       year,
       artists
-    },
-    revalidate: 60
+    }
   }
 }
 
